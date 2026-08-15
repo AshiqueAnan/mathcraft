@@ -1,0 +1,365 @@
+import type { Lesson } from "../schema";
+
+export const T1U4L5: Lesson = {
+  id: "T1-U4-L5",
+  tier: 1,
+  unit: "Fractions",
+  title: "Multiplying Fractions: The Area Story",
+  prerequisites: ["T1-U3-L4","T1-U4-L2","T1-U4-L4"],
+  estimatedMinutes: 13,
+  hook: {
+    question:
+      "A field is $\\frac{2}{3}$ full of wheat. Then a storm ruins $\\frac{1}{2}$ of the wheat. What fraction of the WHOLE field still has good wheat? You can't just subtract — try drawing it.",
+    type: "real-world",
+  },
+  intuitionBlocks: [
+    {
+      widget: "fraction-bars",
+      narrative:
+        "Draw a rectangle. Shade $\\frac{2}{3}$ of it (split into 3 rows, shade 2). Now split the SAME rectangle into 2 columns and cross out 1 column of the shaded part. The un-crossed shaded cells form a new rectangle: 2 rows × 1 column of a 3×2 grid = 2 cells out of 6. That's $\\frac{2}{6} = \\frac{1}{3}$.",
+      prediction: "Before you draw: will the answer be more or less than $\\frac{2}{3}$?",
+    },
+  ],
+  formalBlocks: [
+    {
+      definition:
+        "To multiply fractions: $\\frac{a}{b} \\times \\frac{c}{d} = \\frac{a \\times c}{b \\times d}$. The WHY: a rectangle is a grid. $\\frac{a}{b} \\times \\frac{c}{d}$ shades a of b rows and c of d columns. The shaded cells are a×c out of b×d cells total. Multiply the tops, multiply the bottoms, then simplify.",
+      examples: [
+        "$\\frac{2}{3} \\times \\frac{1}{2}$: a 3×2 grid. Shade 2 of 3 rows and 1 of 2 columns — the overlap is 2×1 = 2 cells out of 3×2 = 6, so $\\frac{2}{6} = \\frac{1}{3}$.",
+        "$\\frac{3}{4} \\times \\frac{2}{5} = \\frac{3 \\times 2}{4 \\times 5} = \\frac{6}{20} = \\frac{3}{10}$.",
+      ],
+      pitfall:
+        "Do NOT cross-multiply, do NOT find common denominators. Multiplication of fractions is the ONE operation that doesn't need renaming — just multiply straight across the top and across the bottom.", altExplanations: ["FOOD: multiplying 2/3 × 1/2 is a tray with 3 rows of 2 — take 2 rows out of 3 and 1 column out of 2, and the overlap is 2 cells out of 6. The grid shows top×top over bottom×bottom.", "GARDEN: a 3-by-2 plot; take 2 of 3 lengthwise strips and 1 of 2 widthwise strips. The shaded patch is 2×1 unit squares out of 3×2 total — multiply across, no renaming needed."],
+    },
+  ],
+  gutChecks: [
+    {
+      prompt: "Before you scroll: $\\frac{1}{2} \\times \\frac{1}{2}$ — is it $\\frac{1}{4}$ or $\\frac{1}{2}$ or 1?",
+      answer: "$\\frac{1}{4}$ — half of a half is a quarter.",
+    },
+  ],
+  quiz: {
+    pool: [
+      {
+        id: "L5-mcq-1",
+        type: "mcq",
+        category: "procedural",
+        prompt: "What is $\\frac{2}{3} \\times \\frac{3}{4}$?",
+        options: [
+          { id: "a", text: "$\\frac{5}{7}$" },
+          { id: "b", text: "$\\frac{6}{12}$" },
+          { id: "c", text: "$\\frac{1}{2}$" },
+          { id: "d", text: "$\\frac{6}{7}$" },
+        ],
+        correctOptionId: "c",
+        diagnoses: {
+          a: "You added the numerators and denominators. Multiply instead: 2×3 = 6 on top, 3×4 = 12 on bottom → $\\frac{6}{12}$.",
+          b: "$\\frac{6}{12}$ is correct but not simplified. Divide top and bottom by 6: $\\frac{1}{2}$.",
+          d: "You added across. Multiply straight across: $\\frac{6}{12} = \\frac{1}{2}$.",
+        },
+        explanation: "$\\frac{2 \\times 3}{3 \\times 4} = \\frac{6}{12} = \\frac{1}{2}$ (divide by 6).",
+        hints: [
+          "Multiply the tops together.",
+          "Multiply the bottoms together.",
+          "$\\frac{2\\times3}{3\\times4} = \\frac{6}{12} = \\frac{1}{2}$.",
+        ],
+      },
+      {
+        id: "L5-mcq-2",
+        type: "mcq",
+        category: "conceptual",
+        prompt: "In the area model, why does $\\frac{a}{b} \\times \\frac{c}{d}$ have $b \\times d$ in the denominator?",
+        options: [
+          { id: "a", text: "Because you should always multiply denominators." },
+          { id: "b", text: "Because the rectangle is split into b rows and d columns, making b×d total cells." },
+          { id: "c", text: "Because b + d is too small." },
+          { id: "d", text: "Because the denominators must be the same first." },
+        ],
+        correctOptionId: "b",
+        diagnoses: {
+          a: "There's a reason! The grid has b rows and d columns, so the total number of equal cells is exactly b×d.",
+          c: "Size isn't the reason — it's the grid structure: rows × columns = total cells.",
+          d: "Multiplication doesn't need a common denominator. The grid creates the b×d cells directly.",
+        },
+        explanation: "Splitting into b rows and d columns makes b×d equal cells. The shaded overlap is a×c of them, so the answer is $\\frac{a \\times c}{b \\times d}$.",
+        hints: [
+          "How is the rectangle split vertically?",
+          "How is it split horizontally?",
+          "Rows × columns gives the total number of cells.",
+        ],
+      },
+      {
+        id: "L5-mcq-3",
+        type: "mcq",
+        category: "word",
+        prompt: "Aya drinks $\\frac{3}{4}$ of a bottle of juice. Ben drinks $\\frac{1}{2}$ of what Aya drank. What fraction of the bottle did Ben drink?",
+        options: [
+          { id: "a", text: "$\\frac{3}{8}$" },
+          { id: "b", text: "$\\frac{3}{6}$" },
+          { id: "c", text: "$\\frac{2}{3}$" },
+          { id: "d", text: "$\\frac{1}{2}$" },
+        ],
+        correctOptionId: "a",
+        diagnoses: {
+          b: "$\\frac{3}{6}$ is half of $\\frac{3}{4}$? No: $\\frac{1}{2} \\times \\frac{3}{4} = \\frac{3}{8}$.",
+          c: "You subtracted or divided denominators. Ben drinks HALF of Aya's part: multiply.",
+          d: "Ben drinks half of Aya's fraction, not half of the bottle. $\\frac{1}{2} \\times \\frac{3}{4} = \\frac{3}{8}$.",
+        },
+        explanation: "Ben drinks $\\frac{1}{2}$ of $\\frac{3}{4}$: $\\frac{1}{2} \\times \\frac{3}{4} = \\frac{3}{8}$ of the bottle.",
+        hints: [
+          "'Half of $\\frac{3}{4}$' means multiply.",
+          "$\\frac{1}{2} \\times \\frac{3}{4}$ = ?",
+          "1×3 = 3 over 2×4 = 8 → $\\frac{3}{8}$.",
+        ],
+      },
+      {
+        id: "L5-mcq-4",
+        type: "mcq",
+        category: "procedural",
+        prompt: "What is $\\frac{1}{2} \\times \\frac{1}{3}$?",
+        options: [
+          { id: "a", text: "$\\frac{1}{5}$" },
+          { id: "b", text: "$\\frac{1}{6}$" },
+          { id: "c", text: "$\\frac{5}{6}$" },
+          { id: "d", text: "$\\frac{2}{3}$" },
+        ],
+        correctOptionId: "b",
+        diagnoses: {
+          a: "You added the denominators. Multiply: 1×1 = 1 on top, 2×3 = 6 on bottom → $\\frac{1}{6}$.",
+          c: "$\\frac{5}{6}$ is the SUM $\\frac{1}{2} + \\frac{1}{3}$, not the product.",
+          d: "You added the numerators and kept a denominator. Multiply straight across.",
+        },
+        explanation: "$\\frac{1 \\times 1}{2 \\times 3} = \\frac{1}{6}$.",
+        hints: [
+          "Top × top.",
+          "Bottom × bottom.",
+          "1/6.",
+        ],
+      },
+      {
+        id: "L5-mcq-5",
+        type: "mcq",
+        category: "conceptual",
+        prompt: "Half of half a cake is...",
+        options: [
+          { id: "a", text: "a whole quarter — $\\frac{1}{4}$" },
+          { id: "b", text: "half the cake — $\\frac{1}{2}$" },
+          { id: "c", text: "a whole cake" },
+          { id: "d", text: "$\\frac{1}{3}$ of the cake" },
+        ],
+        correctOptionId: "a",
+        diagnoses: {
+          b: "Half of a half is smaller than a half. $\\frac{1}{2} \\times \\frac{1}{2} = \\frac{1}{4}$.",
+          c: "Multiplying by a fraction smaller than 1 makes the result smaller, not bigger.",
+          d: "Thirds aren't involved. The grid is 2×2 = 4 cells, 1 shaded → $\\frac{1}{4}$.",
+        },
+        explanation: "Half of a half is a quarter. The 2×2 grid has 4 cells and 1 shaded corner: $\\frac{1}{4}$.",
+        hints: [
+          "Cut the half in half — what fraction of the whole remains?",
+          "2 × 2 grid, how many cells?",
+          "1 shaded cell out of 4 → $\\frac{1}{4}$.",
+        ],
+      },
+      {
+        id: "L5-mcq-6",
+        type: "mcq",
+        category: "word",
+        prompt: "A recipe needs $\\frac{2}{3}$ cup of flour. You want to make only $\\frac{1}{2}$ of the recipe. How much flour do you need?",
+        options: [
+          { id: "a", text: "$\\frac{2}{6}$ cup = $\\frac{1}{3}$ cup" },
+          { id: "b", text: "$\\frac{3}{5}$ cup" },
+          { id: "c", text: "$\\frac{5}{6}$ cup" },
+          { id: "d", text: "$\\frac{1}{5}$ cup" },
+        ],
+        correctOptionId: "a",
+        diagnoses: {
+          b: "You added numerators and denominators. Half of $\\frac{2}{3}$ means multiply: $\\frac{1}{2} \\times \\frac{2}{3} = \\frac{2}{6} = \\frac{1}{3}$.",
+          c: "$\\frac{5}{6}$ is the sum, not the product.",
+          d: "Check your multiplication: $\\frac{1\\times2}{2\\times3} = \\frac{2}{6} = \\frac{1}{3}$.",
+        },
+        explanation: "Half of $\\frac{2}{3}$ = $\\frac{1}{2} \\times \\frac{2}{3} = \\frac{2}{6} = \\frac{1}{3}$ cup.",
+        hints: [
+          "'Half of' means multiply by $\\frac{1}{2}$.",
+          "$\\frac{1}{2} \\times \\frac{2}{3}$ = ?",
+          "$\\frac{2}{6} = \\frac{1}{3}$ cup.",
+        ],
+      },
+      {
+        id: "L5-num-1",
+        type: "numeric-input",
+        category: "procedural",
+        prompt: "Compute $\\frac{2}{5} \\times \\frac{5}{8}$. Simplify your answer. What is the NUMERATOR?",
+        answer: 1,
+        tolerance: 0,
+        explanation: "$\\frac{2\\times5}{5\\times8} = \\frac{10}{40} = \\frac{1}{4}$. Numerator 1.",
+        hints: [
+          "Multiply tops: 2×5.",
+          "Multiply bottoms: 5×8.",
+          "$\\frac{10}{40}$ simplifies to $\\frac{1}{4}$, so the numerator is 1.",
+        ],
+      },
+      {
+        id: "L5-frac-1",
+        type: "fraction-input",
+        category: "procedural",
+        prompt: "Compute $\\frac{3}{4} \\times \\frac{2}{3}$. Write the simplified answer as a fraction.",
+        numerator: 1,
+        denominator: 2,
+        acceptEquivalent: false,
+        explanation: "$\\frac{3\\times2}{4\\times3} = \\frac{6}{12} = \\frac{1}{2}$.",
+        hints: [
+          "3×2 on top; 4×3 on bottom.",
+          "$\\frac{6}{12}$.",
+          "Simplify: divide by 6 → $\\frac{1}{2}$.",
+        ],
+      },
+      {
+        id: "L5-mcq-7",
+        type: "mcq",
+        category: "conceptual",
+        prompt: "What happens when you multiply a fraction by a fraction smaller than 1?",
+        options: [
+          { id: "a", text: "The result is smaller than the starting fraction" },
+          { id: "b", text: "The result is bigger" },
+          { id: "c", text: "The result stays the same" },
+          { id: "d", text: "It depends on the denominators" },
+        ],
+        correctOptionId: "a",
+        diagnoses: {
+          b: "A fraction less than 1 takes a PORTION of the amount — so it shrinks, not grows.",
+          c: "Only multiplying by 1 keeps the amount the same.",
+          d: "It doesn't depend — any multiplier less than 1 shrinks the result.",
+        },
+        explanation: "Multiplying by $\\frac{1}{2}$ takes half, by $\\frac{2}{3}$ takes two-thirds — always less than the original.",
+        hints: ["What does 'of' mean in 'half of'?", "Multiplying by a fraction takes part.", "The result is smaller."],
+      },
+      {
+        id: "L5-num-2",
+        type: "numeric-input",
+        category: "procedural",
+        prompt: "Compute $\\frac{3}{7} \\times \\frac{7}{9}$. What is the simplified answer as a decimal?",
+        answer: 0.333, tolerance: 0.001,
+        explanation: "$\\frac{3\\times7}{7\\times9} = \\frac{21}{63} = \\frac{1}{3}$ ≈ 0.333.",
+        hints: ["Cancel the 7s.", "3/9 = 1/3.", "0.333."],
+      },
+      {
+        id: "L5-num-3",
+        type: "numeric-input",
+        category: "word",
+        prompt: "You eat $\\frac{2}{5}$ of a pizza, then your brother eats a third of what's left. What fraction of the ORIGINAL pizza does your brother eat as a decimal?",
+        answer: 0.2, tolerance: 0.001,
+        explanation: "Left: $\\frac{3}{5}$. Brother: $\\frac{1}{3} \\times \\frac{3}{5} = \\frac{3}{15} = \\frac{1}{5}$ = 0.2.",
+        hints: ["What's left after 2/5?", "1/3 of that.", "1/5 = 0.2."],
+      },
+      {
+        id: "L5-tf-1",
+        type: "true-false-justify",
+        category: "conceptual",
+        prompt: "$\\frac{2}{5} \\times \\frac{5}{2} = 1$",
+        isTrue: true,
+        explanation: "$\\frac{2\\times5}{5\\times2} = \\frac{10}{10} = 1$ — reciprocals multiply to 1.",
+        hints: ["2×5 = 10.", "5×2 = 10.", "10/10 = 1 — true."],
+      },
+      {
+        id: "L5-tf-2",
+        type: "true-false-justify",
+        category: "conceptual",
+        prompt: "To multiply fractions, you must first find a common denominator.",
+        isTrue: false,
+        explanation: "Multiplication multiplies straight across — no common denominator needed (that's only for adding/subtracting).",
+        hints: ["Do you need same-size parts to multiply?", "Multiply tops and bottoms directly.", "False."],
+      },
+      {
+        id: "L5-order-1",
+        type: "order-steps",
+        category: "word",
+        prompt: "Order the steps to compute $\\frac{2}{3} \\times \\frac{3}{5}$.",
+        sequence: ["Multiply tops: 2×3 = 6", "Multiply bottoms: 3×5 = 15", "Write 6/15", "Simplify to 2/5"],
+        diagnoses: {
+          "Multiply tops: 2×3 = 6@0": "Start by multiplying the numerators.",
+          "Write 6/15@0": "You need both products first.",
+          "Simplify to 2/5@0": "Simplifying comes last.",
+        },
+        explanation: "6/15 simplifies to 2/5 by dividing by 3.",
+        hints: ["Top × top.", "Bottom × bottom.", "Simplify."],
+      },
+      {
+        id: "L5-drag-1",
+        type: "drag-match",
+        category: "conceptual",
+        prompt: "Match each product to its simplified answer.",
+        pairs: [
+          { source: "$\\frac{1}{2} \\times \\frac{2}{3}$", target: "$\\frac{1}{3}$" },
+          { source: "$\\frac{3}{4} \\times \\frac{1}{3}$", target: "$\\frac{1}{4}$" },
+          { source: "$\\frac{2}{5} \\times \\frac{5}{6}$", target: "$\\frac{1}{3}$" },
+        ],
+        diagnoses: {
+          "$\\frac{1}{2} \\times \\frac{2}{3}$->$\\frac{1}{4}$": "2/6 = 1/3, not 1/4.",
+          "$\\frac{3}{4} \\times \\frac{1}{3}$->$\\frac{1}{3}$": "3/12 = 1/4, not 1/3.",
+          "$\\frac{2}{5} \\times \\frac{5}{6}$->$\\frac{1}{4}$": "10/30 = 1/3, not 1/4.",
+        },
+        explanation: "2/6 = 1/3; 3/12 = 1/4; 10/30 = 1/3.",
+        hints: ["2/6.", "3/12.", "10/30."],
+      },
+      {
+        id: "L5-graph-1",
+        type: "graph-interact",
+        category: "word",
+        prompt: "Slider (key: value): set it to the decimal value of $\\frac{2}{3} \\times \\frac{3}{4}$.",
+        challenge: "Set the slider to 0.5.",
+        validate: { value: 0.5 },
+        tolerance: 0.02,
+        explanation: "6/12 = 1/2 = 0.5.",
+        hints: ["2×3, 3×4.", "6/12.", "0.5."],
+      },
+    ],
+    selection: { procedural: 2, conceptual: 2, word: 1 },
+    passThreshold: 0.8,
+  },
+  commonMistakes: [
+    {
+      wrongPattern: "adds denominators or numerators",
+      diagnosis:
+        "Multiplication is NOT addition. You multiply the tops together AND the bottoms together. No common denominator needed.",
+      hint: "Multiply straight across: top × top, bottom × bottom.",
+    },
+    {
+      wrongPattern: "cross-multiplies",
+      diagnosis:
+        "Cross multiplying is for comparing or solving proportions, not for multiplying fractions. $\\frac{a}{b} \\times \\frac{c}{d} = \\frac{a \\times c}{b \\times d}$, straight across.",
+      hint: "Top × top over bottom × bottom.",
+    },
+    {
+      wrongPattern: "forgets to simplify",
+      diagnosis:
+        "The answer is correct but not simplest. Divide top and bottom by any common factor. $\\frac{6}{20}$ simplifies to $\\frac{3}{10}$.",
+      hint: "After multiplying, check: can you simplify the answer?",
+    },
+  ],
+  recallTags: ["fractions", "multiplication", "area model"],
+  discovery: {
+    challenges: [
+      { instruction: "Draw a rectangle split into 3 rows. Shade 2 rows ($\\frac{2}{3}$).", observe: "Two rows of three are shaded — that's $\\frac{2}{3}$." },
+      { instruction: "Now split the same rectangle into 2 columns and cross out 1 column of the shaded part.", observe: "The surviving shaded cells are 2 of 6 — $\\frac{2}{6} = \\frac{1}{3}$. The grid did the multiplying." },
+    ],
+    predict: {
+      prompt: "Before you draw: will $\\frac{2}{3} \\times \\frac{1}{2}$ be more or less than $\\frac{2}{3}$?",
+      options: [
+        { id: "a", text: "More" },
+        { id: "b", text: "Less" },
+        { id: "c", text: "Same" },
+      ],
+      reveal: "Less — taking half of $\\frac{2}{3}$ leaves $\\frac{2}{6}$, which is $\\frac{1}{3}$.",
+    },
+    sayItYourWay: {
+      prompt: "Why does the bottom of the answer come from multiplying the bottoms?",
+      phrasings: [
+        { id: "a", text: "Because the grid now has rows × columns cells", correct: true, why: "Splitting into b rows and d columns makes b×d total cells — the denominator counts all of them." },
+        { id: "b", text: "Because bottoms always get bigger", correct: false, why: "Bigger isn't the reason — it's the structure of the grid that multiplies the piece count." },
+        { id: "c", text: "Because we need a common denominator", correct: false, why: "Multiplication is the ONE operation that doesn't need a common denominator." },
+      ],
+      formalName: "area model",
+    },
+    stretch: "If $\\frac{1}{2}$ of $\\frac{2}{3}$ is $\\frac{1}{3}$, what do you predict $\\frac{1}{2} \\div \\frac{1}{4}$ might be?",
+  },
+};

@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+build/
+
+# Tests
+test-results/
+playwright-report/
+coverage/
+
+# TypeScript
+*.tsbuildinfo
+
+# Environment (never commit secrets)
+.env
+.env.local
+.env*.local
+
+# Local-only tooling (portable Node used on the dev machine)
+.tools/
+
+# Local development artifacts (never committed)
+dev/
+snapshot*.md
+
+# Misc
+.DS_Store
+*.log
+npm-debug.log*

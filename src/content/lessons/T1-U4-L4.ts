@@ -1,0 +1,367 @@
+import type { Lesson } from "../schema";
+
+export const T1U4L4: Lesson = {
+  id: "T1-U4-L4",
+  tier: 1,
+  unit: "Fractions",
+  title: "Adding & Subtracting: Why Common Denominators Work",
+  prerequisites: ["T1-U3-L4","T1-U4-L2","T1-U4-L3"],
+  estimatedMinutes: 14,
+  hook: {
+    question:
+      "You drink half a glass of juice. Your friend pours in a third of the same glass. How much juice is in the glass now? Can you just add 1 and 1, and 2 and 3, to get $\\frac{2}{5}$? Try it with real glasses and see if it works.",
+    type: "paradox",
+  },
+  intuitionBlocks: [
+    {
+      widget: "fraction-bars",
+      narrative:
+        "Put $\\frac{1}{2}$ next to $\\frac{1}{3}$ in two separate bars. They don't line up — halves and thirds are different-sized pieces, so you can't count them together. Now split BOTH bars into sixths: $\\frac{1}{2} = \\frac{3}{6}$ and $\\frac{1}{3} = \\frac{2}{6}$. Now they are the SAME pieces (sixths), so you can count: 3 + 2 = 5 sixths.",
+      prediction: "Before you split: how many sixths is $\\frac{1}{2}$? How many is $\\frac{1}{3}$?",
+    },
+  ],
+  formalBlocks: [
+    {
+      definition:
+        "You can only ADD or SUBTRACT fractions when they are in the SAME size pieces (same denominator). To add $\\frac{a}{b} + \\frac{c}{d}$: 1) Find a common denominator $L$ (the LCM of $b$ and $d$). 2) Rename both fractions as parts of size $L$. 3) Add or subtract the numerators ONLY. 4) Keep the common denominator. 5) Simplify.",
+      examples: [
+        "$\\frac{1}{4} + \\frac{1}{6}$: LCM of 4 and 6 is 12. $\\frac{1}{4} = \\frac{3}{12}$, $\\frac{1}{6} = \\frac{2}{12}$. So $\\frac{3}{12} + \\frac{2}{12} = \\frac{5}{12}$.",
+        "$\\frac{7}{10} - \\frac{2}{5}$: LCM of 10 and 5 is 10. $\\frac{2}{5} = \\frac{4}{10}$. So $\\frac{7}{10} - \\frac{4}{10} = \\frac{3}{10}$.",
+      ],
+      pitfall:
+        "Never add the denominators! $\\frac{1}{2} + \\frac{1}{3}$ is NOT $\\frac{2}{5}$. Halves plus thirds are not fifths. The common denominator is a NAME for the new piece size — you count the pieces (numerators), you don't change the piece size.", altExplanations: ["FOOD: only add slices of the SAME cake size. 1/4 pizza plus 1/6 pizza: re-cut both into twelfths — 3 twelfths + 2 twelfths = 5 twelfths. Never '1+1 over 4+6' — that invents an eighth size nobody cut.", "GAME: collecting cards of different rarities — count the rare pool only after converting everything to the same rarity tier. Adding denominations without converting (1 quarter + 1 dime = 2 nickels?) is the same bug."],
+    },
+  ],
+  gutChecks: [
+    {
+      prompt: "Before you scroll: $\\frac{1}{2} + \\frac{1}{3}$ — will the answer be more or less than 1?",
+      answer: "Less than 1 — half plus a bit more is about $\\frac{5}{6}$, which is less than a whole.",
+    },
+  ],
+  quiz: {
+    pool: [
+      {
+        id: "L4-mcq-1",
+        type: "mcq",
+        category: "procedural",
+        prompt: "What is $\\frac{1}{2} + \\frac{1}{3}$?",
+        options: [
+          { id: "a", text: "$\\frac{2}{5}$" },
+          { id: "b", text: "$\\frac{5}{6}$" },
+          { id: "c", text: "$\\frac{2}{6}$" },
+          { id: "d", text: "$\\frac{1}{5}$" },
+        ],
+        correctOptionId: "b",
+        diagnoses: {
+          a: "You added the denominators! Halves and thirds are different-sized pieces. Rename both to SIXTHS: $\\frac{3}{6} + \\frac{2}{6} = \\frac{5}{6}$.",
+          c: "You renamed only the second fraction to sixths but forgot the first. $\\frac{1}{2} = \\frac{3}{6}$, so $\\frac{3}{6} + \\frac{2}{6} = \\frac{5}{6}$.",
+          d: "You subtracted the denominators. Halves and thirds must be renamed to the same piece size (sixths) first.",
+        },
+        explanation: "Common denominator 6: $\\frac{1}{2} = \\frac{3}{6}$, $\\frac{1}{3} = \\frac{2}{6}$. Add: $\\frac{3+2}{6} = \\frac{5}{6}$.",
+        hints: [
+          "What size pieces do both become? Halves and thirds both fit into sixths.",
+          "$\\frac{1}{2}$ as sixths? $\\frac{1}{3}$ as sixths?",
+          "$\\frac{3}{6} + \\frac{2}{6} = \\frac{5}{6}$.",
+        ],
+      },
+      {
+        id: "L4-mcq-2",
+        type: "mcq",
+        category: "conceptual",
+        prompt: "Why must we use a common denominator to add fractions?",
+        options: [
+          { id: "a", text: "Because the teacher says so." },
+          { id: "b", text: "Because you can only count pieces of the SAME size together." },
+          { id: "c", text: "Because denominators should always be big." },
+          { id: "d", text: "To make the numbers bigger." },
+        ],
+        correctOptionId: "b",
+        diagnoses: {
+          a: "There's a real reason! Counting 2 halves + 3 thirds is like counting 2 apples + 3 oranges — different sized things.",
+          c: "Bigger isn't the goal — the goal is SAME-size pieces so counting makes sense.",
+          d: "We're not inflating numbers; we're renaming pieces to the same size.",
+        },
+        explanation: "Adding is counting pieces. To count them, all pieces must be the same size (same denominator). Halves + thirds are different sizes — rename both to sixths, then count.",
+        hints: [
+          "Can you add 2 apples and 3 oranges as '5 of something'?",
+          "What do the pieces need to be to count them together?",
+          "Same-size pieces = same denominator.",
+        ],
+      },
+      {
+        id: "L4-mcq-3",
+        type: "mcq",
+        category: "word",
+        prompt: "Aya eats $\\frac{1}{4}$ of a chocolate bar. Ben eats $\\frac{2}{3}$ of the same bar. How much did they eat together?",
+        options: [
+          { id: "a", text: "$\\frac{3}{7}$ of the bar" },
+          { id: "b", text: "$\\frac{11}{12}$ of the bar" },
+          { id: "c", text: "$\\frac{3}{12}$ of the bar" },
+          { id: "d", text: "$\\frac{9}{12}$ of the bar" },
+        ],
+        correctOptionId: "b",
+        diagnoses: {
+          a: "You added denominators (7) and added numerators (3). Rename to twelfths first! $\\frac{1}{4} = \\frac{3}{12}$, $\\frac{2}{3} = \\frac{8}{12}$, total $\\frac{11}{12}$.",
+          c: "$\\frac{3}{12}$ is just Aya's share. You forgot to rename and add Ben's $\\frac{2}{3}$.",
+          d: "You doubled Aya's share to $\\frac{6}{12}$? No: $\\frac{1}{4} = \\frac{3}{12}$ and $\\frac{2}{3} = \\frac{8}{12}$, sum $\\frac{11}{12}$.",
+        },
+        explanation: "LCM(4, 3) = 12. $\\frac{1}{4} = \\frac{3}{12}$ and $\\frac{2}{3} = \\frac{8}{12}$. Total: $\\frac{3+8}{12} = \\frac{11}{12}$.",
+        hints: [
+          "Common denominator for 4 and 3?",
+          "Rename both to twelfths.",
+          "$\\frac{3}{12} + \\frac{8}{12} = \\frac{11}{12}$.",
+        ],
+      },
+      {
+        id: "L4-mcq-4",
+        type: "mcq",
+        category: "procedural",
+        prompt: "What is $\\frac{7}{10} - \\frac{2}{5}$?",
+        options: [
+          { id: "a", text: "$\\frac{5}{5}$" },
+          { id: "b", text: "$\\frac{5}{10}$" },
+          { id: "c", text: "$\\frac{3}{10}$" },
+          { id: "d", text: "$\\frac{9}{10}$" },
+        ],
+        correctOptionId: "c",
+        diagnoses: {
+          a: "You subtracted denominators (10−5=5). Keep the common denominator as the piece size — it doesn't subtract.",
+          b: "You subtracted the wrong numerators. Rename: $\\frac{2}{5} = \\frac{4}{10}$, so $\\frac{7-4}{10} = \\frac{3}{10}$.",
+          d: "You added instead of subtracting: $\\frac{7}{10} + \\frac{4}{10}$ would be $\\frac{11}{10}$, not $\\frac{9}{10}$.",
+        },
+        explanation: "$\\frac{2}{5} = \\frac{4}{10}$. So $\\frac{7}{10} - \\frac{4}{10} = \\frac{3}{10}$.",
+        hints: [
+          "Rename $\\frac{2}{5}$ as tenths.",
+          "2×2 = 4, 5×2 = 10 → $\\frac{4}{10}$.",
+          "$\\frac{7}{10} - \\frac{4}{10} = \\frac{3}{10}$.",
+        ],
+      },
+      {
+        id: "L4-mcq-5",
+        type: "mcq",
+        category: "conceptual",
+        prompt: "$\\frac{2}{3} + \\frac{1}{6}$. Which is the best reason it can be added with a common denominator of 6?",
+        options: [
+          { id: "a", text: "Because 6 is the LCM of 3 and 6." },
+          { id: "b", text: "Because 6 is a multiple of both 3 and 6, so both rename cleanly into sixths." },
+          { id: "c", text: "Because 6 is bigger than 3." },
+          { id: "d", text: "Because 6 is even." },
+        ],
+        correctOptionId: "b",
+        diagnoses: {
+          a: "True, but the deep reason is that sixths let BOTH fractions be renamed exactly — 6 is a multiple of both denominators.",
+          c: "Bigger isn't the reason — 5 isn't a multiple of 3, so it wouldn't work.",
+          d: "Evenness is irrelevant. A multiple of both denominators is what matters.",
+        },
+        explanation: "6 is a multiple of both 3 and 6, so both fractions become exact sixths: $\\frac{2}{3} = \\frac{4}{6}$, and $\\frac{1}{6}$ stays $\\frac{1}{6}$.",
+        hints: [
+          "Can thirds be renamed as sixths?",
+          "Can sixths stay as sixths?",
+          "A common denominator is a shared multiple of both bottoms.",
+        ],
+      },
+      {
+        id: "L4-frac-1",
+        type: "fraction-input",
+        category: "procedural",
+        prompt: "Compute $\\frac{1}{4} + \\frac{3}{8}$. Write your answer as a fraction.",
+        numerator: 5,
+        denominator: 8,
+        acceptEquivalent: false,
+        explanation: "$\\frac{1}{4} = \\frac{2}{8}$. So $\\frac{2}{8} + \\frac{3}{8} = \\frac{5}{8}$.",
+        hints: [
+          "What common denominator works for 4 and 8?",
+          "Rename $\\frac{1}{4}$ as eighths: $\\frac{2}{8}$.",
+          "$\\frac{2}{8} + \\frac{3}{8} = \\frac{5}{8}$.",
+        ],
+      },
+      {
+        id: "L4-mcq-6",
+        type: "mcq",
+        category: "word",
+        prompt: "A bucket is $\\frac{2}{5}$ full of water. You pour out $\\frac{1}{10}$ of the bucket. What fraction is left?",
+        options: [
+          { id: "a", text: "$\\frac{1}{5}$" },
+          { id: "b", text: "$\\frac{3}{10}$" },
+          { id: "c", text: "$\\frac{1}{10}$" },
+          { id: "d", text: "$\\frac{3}{5}$" },
+        ],
+        correctOptionId: "b",
+        diagnoses: {
+          a: "You subtracted denominators (5−5?) — no. Rename $\\frac{2}{5} = \\frac{4}{10}$, then $\\frac{4}{10} - \\frac{1}{10} = \\frac{3}{10}$.",
+          c: "$\\frac{1}{10}$ is what you poured OUT. Subtract it from $\\frac{4}{10}$ to find what's left.",
+          d: "You subtracted the numerators as (2−1) but didn't rename to tenths correctly: $\\frac{2}{5} = \\frac{4}{10}$, so $\\frac{4-1}{10} = \\frac{3}{10}$.",
+        },
+        explanation: "Rename: $\\frac{2}{5} = \\frac{4}{10}$. Remain: $\\frac{4}{10} - \\frac{1}{10} = \\frac{3}{10}$.",
+        hints: [
+          "Rename the fifths as tenths.",
+          "$\\frac{2}{5}$ is how many tenths?",
+          "$\\frac{4}{10} - \\frac{1}{10} = \\frac{3}{10}$.",
+        ],
+      },
+      {
+        id: "L4-num-1",
+        type: "numeric-input",
+        category: "procedural",
+        prompt: "What is the LCM of 6 and 8? (Use it as the common denominator.)",
+        answer: 24,
+        tolerance: 0,
+        explanation: "Multiples of 6: 6, 12, 18, 24… Multiples of 8: 8, 16, 24… The smallest common is 24.",
+        hints: [
+          "List multiples of 6.",
+          "List multiples of 8.",
+          "The smallest number in both lists is 24.",
+        ],
+      },
+      {
+        id: "L4-mcq-7",
+        type: "mcq",
+        category: "conceptual",
+        prompt: "Why must you rename fractions before adding them?",
+        options: [
+          { id: "a", text: "So both describe the SAME-sized pieces" },
+          { id: "b", text: "To make the numbers bigger" },
+          { id: "c", text: "To avoid subtraction" },
+          { id: "d", text: "You don't need to rename" },
+        ],
+        correctOptionId: "a",
+        diagnoses: {
+          b: "Renaming changes the name, not the size — it's about matching piece sizes, not growing numbers.",
+          c: "Addition of different-sized pieces is the problem — renaming fixes that, not subtraction.",
+          d: "Adding thirds directly to quarters mixes different-sized slices — you must rename first.",
+        },
+        explanation: "Fractions with different denominators describe different-sized parts. Renaming to a common denominator makes both describe the same-sized pieces, so the numerators can add.",
+        hints: ["Can you add 2 big slices + 3 small slices directly?", "What do the denominators tell you?", "Same-sized pieces make adding honest."],
+      },
+      {
+        id: "L4-num-2",
+        type: "numeric-input",
+        category: "procedural",
+        prompt: "What is the LCM of 4 and 6?",
+        answer: 12,
+        tolerance: 0,
+        explanation: "Multiples of 4: 4, 8, 12… of 6: 6, 12… LCM = 12.",
+        hints: ["List multiples of 4.", "List multiples of 6.", "First shared: 12."],
+      },
+      {
+        id: "L4-num-3",
+        type: "numeric-input",
+        category: "conceptual",
+        prompt: "The numerator when $\\frac{2}{3} + \\frac{1}{4}$ is renamed with denominator 12 is what sum? Type just the numerator of $\\frac{8}{12} + \\frac{3}{12}$.",
+        answer: 11,
+        tolerance: 0,
+        explanation: "8 + 3 = 11, so the sum is $\\frac{11}{12}$.",
+        hints: ["Rename both to twelfths.", "8/12 + 3/12.", "11/12."],
+      },
+      {
+        id: "L4-tf-1",
+        type: "true-false-justify",
+        category: "conceptual",
+        prompt: "$\\frac{1}{4} + \\frac{1}{2} = \\frac{2}{6}$",
+        isTrue: false,
+        explanation: "Rename: $\\frac{1}{4} + \\frac{2}{4} = \\frac{3}{4}$. Adding denominators is never allowed.",
+        hints: ["Rename 1/2 as quarters.", "1/4 + 2/4.", "3/4 — false."],
+      },
+      {
+        id: "L4-tf-2",
+        type: "true-false-justify",
+        category: "conceptual",
+        prompt: "$\\frac{5}{6} - \\frac{1}{3} = \\frac{1}{2}$",
+        isTrue: true,
+        explanation: "$\\frac{1}{3} = \\frac{2}{6}$, so $\\frac{5}{6} - \\frac{2}{6} = \\frac{3}{6} = \\frac{1}{2}$.",
+        hints: ["Rename 1/3 to sixths.", "5/6 − 2/6.", "3/6 = 1/2 — true."],
+      },
+      {
+        id: "L4-order-1",
+        type: "order-steps",
+        category: "word",
+        prompt: "Order the steps to add $\\frac{1}{3} + \\frac{1}{4}$.",
+        sequence: ["Find LCM of 3 and 4: 12", "Rename 1/3 to 4/12", "Rename 1/4 to 3/12", "Add: 7/12"],
+        diagnoses: {
+          "Rename 1/3 to 4/12@0": "Find the common denominator first.",
+          "Rename 1/4 to 3/12@0": "Rename both fractions.",
+          "Add: 7/12@0": "Adding is the final step.",
+        },
+        explanation: "Common denominator 12: 4/12 + 3/12 = 7/12.",
+        hints: ["LCM of 3 and 4.", "Rename both.", "4 + 3 = 7."],
+      },
+      {
+        id: "L4-drag-1",
+        type: "drag-match",
+        category: "conceptual",
+        prompt: "Match each sum to its answer.",
+        pairs: [
+          { source: "$\\frac{1}{4} + \\frac{1}{4}$", target: "$\\frac{1}{2}$" },
+          { source: "$\\frac{1}{3} + \\frac{1}{3}$", target: "$\\frac{2}{3}$" },
+          { source: "$\\frac{1}{4} + \\frac{1}{8}$", target: "$\\frac{3}{8}$" },
+        ],
+        diagnoses: {
+          "$\\frac{1}{4} + \\frac{1}{4}$->$\\frac{3}{8}$": "Same quarters: 1+1 = 2 quarters = 1/2.",
+          "$\\frac{1}{3} + \\frac{1}{3}$->$\\frac{2}{6}$": "Same thirds: 2/3.",
+          "$\\frac{1}{4} + \\frac{1}{8}$->$\\frac{1}{2}$": "Rename: 2/8 + 1/8 = 3/8, not 1/2.",
+        },
+        explanation: "Same denominators add directly: 2/4 = 1/2, 2/3, and 2/8+1/8 = 3/8.",
+        hints: ["Same denominator? Add tops.", "2 quarters = 1 half.", "Rename 1/4 to eighths."],
+      },
+      {
+        id: "L4-graph-1",
+        type: "graph-interact",
+        category: "word",
+        prompt: "Slider (key: value): set it to the decimal value of $\\frac{1}{4} + \\frac{1}{2}$.",
+        challenge: "Set the slider to 0.75.",
+        validate: { value: 0.75 },
+        tolerance: 0.02,
+        explanation: "$\\frac{1}{4} + \\frac{2}{4} = \\frac{3}{4}$ = 0.75.",
+        hints: ["Rename 1/2 as quarters.", "3/4.", "0.75."],
+      },
+    ],
+    selection: { procedural: 2, conceptual: 2, word: 1 },
+    passThreshold: 0.8,
+  },
+  commonMistakes: [
+    {
+      wrongPattern: "adds denominators",
+      diagnosis:
+        "Adding the bottom numbers creates a new piece size that wasn't there. $\\frac{1}{2} + \\frac{1}{3}$ is NOT $\\frac{2}{5}$ — you renamed both to SIXTHS first ($\\frac{3}{6} + \\frac{2}{6} = \\frac{5}{6}$).",
+      hint: "Ask: 'What size piece do both fractions become?' That's the common denominator — you never count it.",
+    },
+    {
+      wrongPattern: "adds numerators but keeps one denominator",
+      diagnosis:
+        "You need the SAME denominator for both pieces. Rename BOTH fractions to the common denominator before adding the numerators.",
+      hint: "Rename each fraction to the common denominator, then sum the tops.",
+    },
+    {
+      wrongPattern: "wrong common denominator",
+      diagnosis:
+        "The common denominator must be a multiple of BOTH denominators. For 4 and 6, 8 is wrong (6 doesn't divide 8); use 12.",
+      hint: "The LCM of the two denominators is the smallest safe common denominator.",
+    },
+  ],
+  recallTags: ["fractions", "addition", "subtraction"],
+  discovery: {
+    challenges: [
+      { instruction: "Put $\\frac{1}{2}$ and $\\frac{1}{3}$ in separate bars and try to line them up.", observe: "Halves and thirds are different-sized pieces — you can't count them together yet." },
+      { instruction: "Split both bars into sixths.", observe: "$\\frac{3}{6}$ and $\\frac{2}{6}$ — same-size pieces, so you can count: 3 + 2 = 5 sixths." },
+    ],
+    predict: {
+      prompt: "Before you scroll: $\\frac{1}{2} + \\frac{1}{3}$ — will the answer be more or less than 1?",
+      options: [
+        { id: "a", text: "More than 1" },
+        { id: "b", text: "Less than 1" },
+        { id: "c", text: "Exactly 1" },
+      ],
+      reveal: "Less than 1 — it's $\\frac{5}{6}$, because $\\frac{3}{6} + \\frac{2}{6} = \\frac{5}{6}$.",
+    },
+    sayItYourWay: {
+      prompt: "Why can't you just add the tops AND the bottoms together?",
+      phrasings: [
+        { id: "a", text: "Because the bottom is the size of the piece, not a count", correct: true, why: "Adding bottoms would invent a new piece size that doesn't exist (fifths). Rename to the same piece size, then count." },
+        { id: "b", text: "Because the bottom numbers are too big", correct: false, why: "Size isn't the issue. The rule is the same for any pair: same piece size first, then count." },
+        { id: "c", text: "Because you always multiply bottoms when adding", correct: false, why: "You only multiply bottoms to FIND a common size — you never keep a new unrelated bottom as the answer for adding." },
+      ],
+      formalName: "common denominator",
+    },
+    stretch: "If $\\frac{1}{2} + \\frac{1}{3} = \\frac{5}{6}$, what do you predict $\\frac{1}{2} \\times \\frac{1}{3}$ might be — bigger or smaller than $\\frac{1}{3}$?",
+  },
+};

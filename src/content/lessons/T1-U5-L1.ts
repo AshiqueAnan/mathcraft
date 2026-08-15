@@ -1,0 +1,228 @@
+import type { Lesson } from "../schema";
+
+export const T1U5L1: Lesson = {
+  id: "T1-U5-L1",
+  tier: 1,
+  unit: "Decimals & percentages",
+  title: "One Idea, Three Costumes",
+  prerequisites: ["T1-U4-L1","T1-U4-L2","T1-U4-L6"],
+  estimatedMinutes: 12,
+  hook: {
+    question: "Half a pizza, 0.5 of a pizza, 50% of a pizza — three costumes, one actor. The same amount wears a fraction suit, a decimal suit, or a percent suit depending on the crowd.",
+    type: "puzzle",
+  },
+  intuitionBlocks: [
+    {
+      widget: "fraction-bars",
+      narrative: "Build 1/4, then 1/2, then 3/4. Watch the readout: each fraction instantly puts on its decimal costume and its % costume. The amount never changes — only the name.",
+    },
+  ],
+  formalBlocks: [
+    {
+      definition: "Fraction, decimal, and percentage are three ways to write the same part of a whole. Decimal = numerator ÷ denominator. Percentage = the part out of 100, so percent = decimal × 100 (add a % sign).",
+      examples: [
+        "$\\frac{1}{2} = 0.5 = 50\\%$ — half is half in any costume.",
+        "$\\frac{3}{4} = 0.75 = 75\\%$ — divide 3 by 4, then ×100 for the percent.",
+      ],
+      pitfall: "75% is not 0.75? It IS 0.75. But 5% is 0.05, not 0.5 — percent means 'out of 100', so 5% = 5/100 = 0.05. Move the decimal two places, not one.", altExplanations: ["FOOD: one cookie is a cookie — call it a 'half batch' (1/2), a '0.5 batch' (0.5), or a '50% batch' (50%). Same dough, three labels. Percent is just the label with the cut counted out of 100.", "GAME: a loading bar shows 0.75 full, 75%, or 3/4 — the bar is the same progress, the readout is just a different costume. Move the decimal two places to switch between 0.75 and 75%."],
+    },
+  ],
+  gutChecks: [
+    { prompt: "Write 0.25 as a percentage.", answer: "25% — tenths place? No: 0.25 = 25 hundredths = 25/100 = 25%." },
+  ],
+  quiz: {
+    pool: [
+      {
+        id: "U5L1-mcq-1", type: "mcq", category: "procedural",
+        prompt: "0.5 equals what percentage?",
+        options: [{ id: "a", text: "50%" }, { id: "b", text: "5%" }, { id: "c", text: "0.5%" }, { id: "d", text: "500%" }],
+        correctOptionId: "a",
+        diagnoses: { b: "5% = 0.05 — two places. 0.5 = 50%.", c: "0.5% is tiny — half of one percent.", d: "500% would be 5, ten times too big." },
+        explanation: "0.5 × 100 = 50, with the % sign → 50%.",
+        hints: ["% = out of 100.", "0.5 = 5 tenths = 50 hundredths.", "50%."],
+      },
+      {
+        id: "U5L1-mcq-2", type: "mcq", category: "conceptual",
+        prompt: "Which is NOT equal to 75%?",
+        options: [{ id: "a", text: "0.75" }, { id: "b", text: "$\\frac{3}{4}$" }, { id: "c", text: "0.075" }, { id: "d", text: "75 out of 100" }],
+        correctOptionId: "c",
+        diagnoses: { a: "0.75 = 75/100 = 75% — equal.", b: "3/4 = 0.75 — equal.", d: "75 out of 100 is exactly 75%." },
+        explanation: "0.075 is 7.5% (75 thousandths), not 75%. The others all equal 75%.",
+        hints: ["75% = 0.75.", "0.075 has an extra zero.", "0.075 is the odd one."],
+      },
+      {
+        id: "U5L1-mcq-3", type: "mcq", category: "word",
+        prompt: "A store has 200 shirts. 60% are blue. How many blue shirts?",
+        options: [{ id: "a", text: "120" }, { id: "b", text: "60" }, { id: "c", text: "12" }, { id: "d", text: "140" }],
+        correctOptionId: "a",
+        diagnoses: { b: "60 is 30% of 200, not 60%.", c: "12 is 6% of 200.", d: "140 is 70%." },
+        explanation: "60% = 0.6. 0.6 × 200 = 120.",
+        hints: ["60% = 0.6.", "0.6 × 200.", "120."],
+      },
+      {
+        id: "U5L1-mcq-4", type: "mcq", category: "conceptual",
+        prompt: "25% of a class of 40 students walk to school. How many walk?",
+        options: [{ id: "a", text: "10" }, { id: "b", text: "25" }, { id: "c", text: "4" }, { id: "d", text: "15" }],
+        correctOptionId: "a",
+        diagnoses: { b: "25% is the percent, not the count of students.", c: "40 ÷ 25 gives 1.6 — not the right path. 25% = 1/4, and 1/4 of 40 = 10.", d: "15 is 37.5%." },
+        explanation: "25% = 1/4. 40 ÷ 4 = 10.",
+        hints: ["25% is a quarter.", "Quarter of 40.", "10."],
+      },
+      {
+        id: "U5L1-mcq-5", type: "mcq", category: "procedural",
+        prompt: "Write $\\frac{1}{5}$ as a percentage.",
+        options: [{ id: "a", text: "20%" }, { id: "b", text: "5%" }, { id: "c", text: "50%" }, { id: "d", text: "2%" }],
+        correctOptionId: "a",
+        diagnoses: { b: "5% = 1/20, not 1/5.", c: "50% = 1/2.", d: "2% = 1/50." },
+        explanation: "1/5 = 0.2 = 20%.",
+        hints: ["1/5 as a decimal.", "0.2.", "0.2 × 100 = 20%."],
+      },
+      {
+        id: "U5L1-mcq-6", type: "mcq", category: "word",
+        prompt: "You scored 18 out of 20 on a test. What percent is that?",
+        options: [{ id: "a", text: "90%" }, { id: "b", text: "80%" }, { id: "c", text: "9%" }, { id: "d", text: "18%" }],
+        correctOptionId: "a",
+        diagnoses: { b: "16/20 would be 80%; you scored 18.", c: "9% would be 1.8/20.", d: "18% would be 3.6/20." },
+        explanation: "18 ÷ 20 = 0.9 = 90%.",
+        hints: ["18 ÷ 20.", "0.9.", "90%."],
+      },
+      {
+        id: "U5L1-num-1", type: "numeric-input", category: "procedural",
+        prompt: "Type the percentage for the decimal 0.35 (include the % sign).",
+        answer: 35, tolerance: 0, unit: "%",
+        explanation: "0.35 × 100 = 35%.",
+        hints: ["Move decimal two places right.", "0.35 → 35.", "35%."],
+      },
+      {
+        id: "U5L1-num-2", type: "numeric-input", category: "procedural",
+        prompt: "Type the decimal for 12% (as a decimal number).",
+        answer: 0.12, tolerance: 0.001,
+        explanation: "12% = 12/100 = 0.12.",
+        hints: ["Percent = out of 100.", "12 ÷ 100.", "0.12."],
+      },
+      {
+        id: "U5L1-num-3", type: "numeric-input", category: "conceptual",
+        prompt: "What is 40% of 60?",
+        answer: 24, tolerance: 0,
+        explanation: "0.4 × 60 = 24.",
+        hints: ["40% = 0.4.", "0.4 × 60.", "24."],
+      },
+      {
+        id: "U5L1-num-4", type: "numeric-input", category: "word",
+        prompt: "A bike costs $120. It's on 15% discount. How many dollars off?",
+        answer: 18, tolerance: 0, unit: "$",
+        explanation: "15% = 0.15. 0.15 × 120 = $18.",
+        hints: ["15% = 0.15.", "0.15 × 120.", "$18."],
+      },
+      {
+        id: "U5L1-frac-1", type: "fraction-input", category: "conceptual",
+        prompt: "Write 0.5 as a simplified fraction.",
+        numerator: 1, denominator: 2, acceptEquivalent: true,
+        explanation: "0.5 = 5/10 = 1/2.",
+        hints: ["0.5 = 5 tenths.", "Simplify.", "1/2."],
+      },
+      {
+        id: "U5L1-tf-1", type: "true-false-justify", category: "conceptual",
+        prompt: "0.05 is the same as 5%.",
+        isTrue: true,
+        explanation: "5% = 5/100 = 0.05.",
+        hints: ["Percent out of 100.", "5 ÷ 100.", "0.05 — true."],
+      },
+      {
+        id: "U5L1-tf-2", type: "true-false-justify", category: "conceptual",
+        prompt: "50% is bigger than 0.5.",
+        isTrue: false,
+        explanation: "50% = 0.5 — same amount, different costume.",
+        hints: ["50% = 50/100.", "0.5 = 5/10.", "Equal — false."],
+      },
+      {
+        id: "U5L1-order-1", type: "order-steps", category: "word",
+        prompt: "Order the steps to convert 3/5 to a percentage.",
+        sequence: ["Divide: 3 ÷ 5 = 0.6", "Multiply by 100: 0.6 × 100 = 60", "Add the % sign", "Answer: 60%"],
+        diagnoses: {
+          "Multiply by 100: 0.6 × 100 = 60@0": "Divide first.",
+          "Add the % sign@0": "The sign goes on at the end.",
+          "Answer: 60%@0": "60% is the final answer.",
+        },
+        explanation: "Divide the top by the bottom, then ×100.",
+        hints: ["3 ÷ 5.", "0.6.", "60%."],
+      },
+      {
+        id: "U5L1-drag-1", type: "drag-match", category: "conceptual",
+        prompt: "Match each fraction to its decimal and percent pair (drag to the decimal).",
+        pairs: [
+          { source: "$\\frac{1}{4}$", target: "0.25" },
+          { source: "$\\frac{1}{2}$", target: "0.5" },
+          { source: "$\\frac{3}{4}$", target: "0.75" },
+        ],
+        diagnoses: {
+          "$\\frac{1}{4}$->0.5": "A quarter is 0.25, not 0.5.",
+          "$\\frac{1}{2}$->0.25": "Half is 0.5, not 0.25.",
+          "$\\frac{3}{4}$->0.5": "Three quarters is 0.75.",
+        },
+        explanation: "1/4 = 0.25, 1/2 = 0.5, 3/4 = 0.75.",
+        hints: ["Quarter.", "Half.", "Three quarters."],
+      },
+      {
+        id: "U5L1-graph-1", type: "graph-interact", category: "word",
+        prompt: "Slider (key: value): set it to the decimal for 40%.",
+        challenge: "Set the slider to 0.4.",
+        validate: { value: 0.4 },
+        tolerance: 0.02,
+        explanation: "40% = 0.4.",
+        hints: ["40 out of 100.", "0.4.", "Set the slider to 0.4."],
+      },
+    ],
+    selection: { procedural: 2, conceptual: 2, word: 1 },
+    passThreshold: 0.8,
+  },
+  commonMistakes: [
+    {
+      wrongPattern: "confuses 5% with 0.5",
+      diagnosis: "5% = 0.05, not 0.5. Percent means per HUNDRED — move the decimal two places.",
+      hint: "0.5 = 50%; 0.05 = 5%.",
+    },
+    {
+      wrongPattern: "moves the decimal one place for percent",
+      diagnosis: "To convert decimal→percent, ×100 moves the point TWO places right. 0.4 → 40%, not 4%.",
+      hint: "Two places: 0.4 → 40.",
+    },
+    {
+      wrongPattern: "divides instead of multiplying for 'of'",
+      diagnosis: "'40% of 60' means 0.4 × 60 = 24. 'Of' is multiplication in percent problems.",
+      hint: "Percent 'of' amount → multiply.",
+    },
+  ],
+  recallTags: ["percentages", "decimals", "equivalence"],
+  discovery: {
+    challenges: [
+      {
+        instruction: "Build 1/4 on the bar. Note the decimal and percent in the readout.",
+        observe: "1/4 = 0.25 = 25% — three costumes, same amount.",
+      },
+      {
+        instruction: "Build 1/2 and 3/4. Compare all three readouts.",
+        observe: "Each fraction maps to exactly one decimal and one percent — the costumes change, the amount doesn't.",
+      },
+    ],
+    predict: {
+      prompt: "Before you slide: what percentage will 1/4 show?",
+      options: [
+        { id: "a", text: "25%" },
+        { id: "b", text: "4%" },
+        { id: "c", text: "0.25%" },
+      ],
+      reveal: "25% — because 1/4 = 0.25, and 0.25 × 100 = 25.",
+    },
+    sayItYourWay: {
+      prompt: "How is a percentage related to a fraction?",
+      phrasings: [
+        { id: "a", text: "A percentage is a fraction out of 100", correct: true, why: "50% = 50/100 — a fraction whose denominator is 100." },
+        { id: "b", text: "A percentage is a completely different amount", correct: false, why: "50% and 1/2 are the same amount in different costumes." },
+        { id: "c", text: "A percentage is bigger than a fraction", correct: false, why: "Only looks bigger because of the number; 50% = 0.5." },
+      ],
+      formalName: "percentage (per hundred)",
+    },
+    stretch: "If 1/4 = 25%, what do you predict 1/8 equals as a percent? Build it to check.",
+  },
+};

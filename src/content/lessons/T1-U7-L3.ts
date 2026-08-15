@@ -1,0 +1,230 @@
+import type { Lesson } from "../schema";
+
+export const T1U7L3: Lesson = {
+  id: "T1-U7-L3",
+  tier: 1,
+  unit: "Indices",
+  title: "The Power of Zero (and Less)",
+  prerequisites: ["T1-U6-L3","T1-U7-L2"],
+  estimatedMinutes: 12,
+  hook: {
+    question: "2⁴ = 16, 2³ = 8, 2² = 4, 2¹ = 2. Each step divides by 2. What comes next? 2⁰ seems like 'no twos' — but the pattern says 1. And 2⁻¹? The pattern doesn't stop — it goes below zero, throwing half-powers at you.",
+    type: "puzzle",
+  },
+  intuitionBlocks: [
+    {
+      widget: "number-line",
+      narrative: "Slide back through 2⁴, 2³, 2², 2¹ — each step ÷2. Step one more: 2⁰ = 1. Step again: 2⁻¹ = ½. The pattern keeps dividing by 2 forever, so negative indices are fractions in disguise.",
+    },
+  ],
+  formalBlocks: [
+    {
+      definition: "By the pattern (dividing by the base each step): $a^0 = 1$ for any non-zero $a$. And $a^{-n} = \\frac{1}{a^n}$ — a negative index means the reciprocal. So $2^{-3} = \\frac{1}{2^3} = \\frac{1}{8}$.",
+      examples: [
+        "Going down: $2^3 = 8$, $2^2 = 4$, $2^1 = 2$, $2^0 = 1$, $2^{-1} = \\frac{1}{2}$, $2^{-2} = \\frac{1}{4}$.",
+        "$10^{-2} = \\frac{1}{10^2} = \\frac{1}{100} = 0.01$.",
+      ],
+      pitfall: "$2^0$ is NOT 0 — it's 1. And $2^{-1}$ is NOT $-2$ — it's $\\frac{1}{2}$. The minus sign in the index means reciprocal, not negative value.", altExplanations: ["GAME: combo counter going down — a ×8 combo that falls by half three times: 8 → 4 → 2 → 1 = $2^0$. One more halving gives 1/2 = $2^{-1}$; the minus index tracks the halving step, not a negative value.", "MONEY: half-life in savings: $100 → $50 → $25 is ×(1/2) twice = $2^{-2}$ scaling. A negative index is the 'shrink' direction — reciprocal, not owing money."],
+    },
+  ],
+  gutChecks: [
+    { prompt: "What is 3⁰?", answer: "1 — any non-zero base to power 0 is 1." },
+  ],
+  quiz: {
+    pool: [
+      {
+        id: "U7L3-mcq-1", type: "mcq", category: "procedural",
+        prompt: "What is 7⁰?",
+        options: [{ id: "a", text: "1" }, { id: "b", text: "0" }, { id: "c", text: "7" }, { id: "d", text: "70" }],
+        correctOptionId: "a",
+        diagnoses: { b: "0 is not the pattern — 2⁰ = 1 by dividing by 2.", c: "That's 7¹.", d: "70 = 7 × 10." },
+        explanation: "Anything non-zero to the 0 power = 1.",
+        hints: ["Pattern: divide by base.", "2⁰ = 1.", "So 7⁰ = 1."],
+      },
+      {
+        id: "U7L3-mcq-2", type: "mcq", category: "conceptual",
+        prompt: "Why is 2⁰ = 1?",
+        options: [
+          { id: "a", text: "Following the ÷2 pattern: 2²=4 → 2¹=2 → 2⁰=1" },
+          { id: "b", text: "Because 0 twos multiply to 0" },
+          { id: "c", text: "Because we round down" },
+          { id: "d", text: "It's actually 2" },
+        ],
+        correctOptionId: "a",
+        diagnoses: { b: "Zero twos multiplied is confusing — the PATTERN (divide by 2) is the proof: 4→2→1.", c: "No rounding — exact pattern.", d: "2¹ = 2, not 2⁰." },
+        explanation: "The pattern 2²=4, 2¹=2 divides by 2 each step: 2⁰ = 1.",
+        hints: ["2² = 4.", "2¹ = 2 (÷2).", "2⁰ = 1 (÷2 again)."],
+      },
+      {
+        id: "U7L3-mcq-3", type: "mcq", category: "word",
+        prompt: "A halfling: a drug halves every hour. Start with 16 mg. After 4 hours it's 16 × 2⁻⁴ mg. 2⁻⁴ = ?",
+        options: [{ id: "a", text: "$\\frac{1}{16}$" }, { id: "b", text: "−16" }, { id: "c", text: "8" }, { id: "d", text: "16" }],
+        correctOptionId: "a",
+        diagnoses: { b: "Negative index ≠ negative number.", c: "8 = 2³, wrong sign.", d: "16 = 2⁴." },
+        explanation: "2⁻⁴ = 1/(2⁴) = 1/16.",
+        hints: ["Negative index → reciprocal.", "1 ÷ 2⁴.", "1/16."],
+      },
+      {
+        id: "U7L3-mcq-4", type: "mcq", category: "procedural",
+        prompt: "What is 2⁻²?",
+        options: [{ id: "a", text: "$\\frac{1}{4}$" }, { id: "b", text: "−4" }, { id: "c", text: "−2" }, { id: "d", text: "$\\frac{1}{2}$" }],
+        correctOptionId: "a",
+        diagnoses: { b: "−4 = −(2²), not a reciprocal.", c: "−2 ignores the reciprocal.", d: "1/2 is 2⁻¹." },
+        explanation: "2⁻² = 1/(2²) = 1/4.",
+        hints: ["Reciprocal of 2².", "1 ÷ 4.", "1/4."],
+      },
+      {
+        id: "U7L3-mcq-5", type: "mcq", category: "conceptual",
+        prompt: "Which is the same as 10⁻¹?",
+        options: [{ id: "a", text: "0.1" }, { id: "b", text: "10" }, { id: "c", text: "−10" }, { id: "d", text: "1.0" }],
+        correctOptionId: "a",
+        diagnoses: { b: "10⁰ = 1, but 10⁻¹ is 0.1.", c: "Negative index ≠ negative number.", d: "1.0 = 10⁰." },
+        explanation: "10⁻¹ = 1/10 = 0.1.",
+        hints: ["Reciprocal of 10.", "1 ÷ 10.", "0.1."],
+      },
+      {
+        id: "U7L3-mcq-6", type: "mcq", category: "word",
+        prompt: "Measurement in metres: 10⁻³ km equals 1 metre. 10⁻³ as a decimal?",
+        options: [{ id: "a", text: "0.001" }, { id: "b", text: "0.01" }, { id: "c", text: "−0.001" }, { id: "d", text: "1000" }],
+        correctOptionId: "a",
+        diagnoses: { b: "0.01 = 10⁻².", c: "Negative index ≠ negative number.", d: "1000 = 10³." },
+        explanation: "10⁻³ = 1/1000 = 0.001.",
+        hints: ["1 ÷ 10³.", "1 ÷ 1000.", "0.001."],
+      },
+      {
+        id: "U7L3-num-1", type: "numeric-input", category: "procedural",
+        prompt: "Type 5⁰.", answer: 1, tolerance: 0,
+        explanation: "Any non-zero base power 0 = 1.",
+        hints: ["Follow the ÷base pattern.", "Pattern → 1.", "5⁰ = 1."],
+      },
+      {
+        id: "U7L3-num-2", type: "numeric-input", category: "procedural",
+        prompt: "Type 3⁻¹ as a decimal.", answer: 0.333, tolerance: 0.001,
+        explanation: "3⁻¹ = 1/3 ≈ 0.333.",
+        hints: ["Reciprocal of 3.", "1 ÷ 3.", "0.333."],
+      },
+      {
+        id: "U7L3-num-3", type: "numeric-input", category: "conceptual",
+        prompt: "What is 2⁻³? (Type as a decimal.)", answer: 0.125, tolerance: 0.001,
+        explanation: "2⁻³ = 1/2³ = 1/8 = 0.125.",
+        hints: ["Reciprocal of 2³.", "1 ÷ 8.", "0.125."],
+      },
+      {
+        id: "U7L3-num-4", type: "numeric-input", category: "word",
+        prompt: "A substance halves every step. From 64 it goes … 32, 16, 8, 4, 2, ? (Continue the pattern one more.)",
+        answer: 1, tolerance: 0,
+        explanation: "2¹ = 2, then 2⁰ = 1 — halving again lands on 1.",
+        hints: ["Continue the halving.", "2, then half.", "1."],
+      },
+      {
+        id: "U7L3-frac-1", type: "fraction-input", category: "conceptual",
+        prompt: "Write 5⁻² as a simplified fraction.",
+        numerator: 1, denominator: 25, acceptEquivalent: false,
+        explanation: "5⁻² = 1/5² = 1/25.",
+        hints: ["5² = 25.", "Reciprocal.", "1/25."],
+      },
+      {
+        id: "U7L3-tf-1", type: "true-false-justify", category: "conceptual",
+        prompt: "2⁰ = 1.",
+        isTrue: true,
+        explanation: "Pattern: 2²=4, 2¹=2, 2⁰=1.",
+        hints: ["Divide by 2 each step.", "1.", "True."],
+      },
+      {
+        id: "U7L3-tf-2", type: "true-false-justify", category: "conceptual",
+        prompt: "2⁻² = −4.",
+        isTrue: false,
+        explanation: "Negative index means RECIPROCAL: 2⁻² = 1/4, not −4.",
+        hints: ["Reciprocal, not negative.", "1/4.", "False."],
+      },
+      {
+        id: "U7L3-order-1", type: "order-steps", category: "word",
+        prompt: "Order the steps to find 3⁻².",
+        sequence: ["Write the negative as reciprocal: 1/3²", "Square the base: 3² = 9", "Place in denominator: 1/9", "Answer: 1/9"],
+        diagnoses: {
+          "Square the base: 3² = 9@0": "First turn the minus into reciprocal.",
+          "Place in denominator: 1/9@0": "Reciprocal means over the square.",
+          "Answer: 1/9@0": "1/9 is the answer.",
+        },
+        explanation: "a⁻ⁿ = 1/aⁿ.",
+        hints: ["Reciprocal first.", "3².", "1/9."],
+      },
+      {
+        id: "U7L3-drag-1", type: "drag-match", category: "conceptual",
+        prompt: "Match each expression to its value.",
+        pairs: [
+          { source: "2⁰", target: "1" },
+          { source: "2⁻¹", target: "$\\frac{1}{2}$" },
+          { source: "2⁻³", target: "$\\frac{1}{8}$" },
+        ],
+        diagnoses: {
+          "2⁰->0": "2⁰ = 1, not 0.",
+          "2⁻¹->−2": "Negative index → reciprocal 1/2.",
+          "2⁻³->−8": "1/8, not −8.",
+        },
+        explanation: "Power 0 → 1; negative → reciprocal.",
+        hints: ["No twos → 1.", "Half.", "1/8."],
+      },
+      {
+        id: "U7L3-graph-1", type: "graph-interact", category: "word",
+        prompt: "Slider (key: value): set it to 2⁻² as a decimal.",
+        challenge: "Set the slider to 0.25.",
+        validate: { value: 0.25 },
+        tolerance: 0.01,
+        explanation: "2⁻² = 1/4 = 0.25.",
+        hints: ["1 ÷ 2².", "Reciprocal of 4.", "0.25."],
+      },
+    ],
+    selection: { procedural: 2, conceptual: 2, word: 1 },
+    passThreshold: 0.8,
+  },
+  commonMistakes: [
+    {
+      wrongPattern: "thinks 2⁰ = 0",
+      diagnosis: "The pattern 2³=8, 2²=4, 2¹=2 divides by 2 each step → 2⁰ = 1, never 0.",
+      hint: "Divide by the base each step; 2⁰ = 1.",
+    },
+    {
+      wrongPattern: "reads negative index as negative value",
+      diagnosis: "2⁻³ = 1/8, not −8. A negative index means reciprocal, not a negative number.",
+      hint: "a⁻ⁿ = 1/aⁿ — flip the base into the denominator.",
+    },
+    {
+      wrongPattern: "confuses a⁻ⁿ with a without the minus",
+      diagnosis: "2⁻² = 1/4, not 4. The minus flips to reciprocal.",
+      hint: "Negative index → flip to denominator.",
+    },
+  ],
+  recallTags: ["indices", "zero-power", "negative-power"],
+  discovery: {
+    challenges: [
+      {
+        instruction: "Slide the line: 2⁴=16, 2³=8, 2²=4, 2¹=2. Note each step ÷2.",
+        observe: "The pattern keeps dividing by 2 — the next step must be 2⁰ = 1.",
+      },
+      {
+        instruction: "Keep sliding: 2⁻¹, 2⁻², 2⁻³.",
+        observe: "1/2, 1/4, 1/8 — the pattern never stops, just halves below 1.",
+      },
+    ],
+    predict: {
+      prompt: "Before you slide past 2¹: what is 2⁰?",
+      options: [
+        { id: "a", text: "1" },
+        { id: "b", text: "0" },
+        { id: "c", text: "2" },
+      ],
+      reveal: "1 — the pattern divides by 2 each step: 4 → 2 → 1.",
+    },
+    sayItYourWay: {
+      prompt: "What does a negative index really mean?",
+      phrasings: [
+        { id: "a", text: "The reciprocal — 1 over the positive power", correct: true, why: "2⁻³ means 1/(2³) — flip the base into the denominator." },
+        { id: "b", text: "A negative number", correct: false, why: "The minus is in the INDEX, not the value." },
+        { id: "c", text: "Zero minus the power", correct: false, why: "No subtraction of style — it's a reciprocal." },
+      ],
+      formalName: "zero and negative indices",
+    },
+    stretch: "If 2⁴, 2³, 2², 2¹, 2⁰ goes 16, 8, 4, 2, 1, what do you predict 2^(1/2) might be? (Save the guess — it's the next lesson.)",
+  },
+};

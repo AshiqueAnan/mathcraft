@@ -1,0 +1,236 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Design tokens — Section 7 of the spec (exact values) ===== */
+:root {
+  --bg: #0b0f14;
+  --bg-panel: #131a22;
+  --bg-panel-raised: #1a222d;
+  --primary: #4f7cff;
+  --success: #22c55e;
+  --warn: #f59e0b;
+  --error: #ef4444;
+  --text: #e7ecf3;
+  --text-muted: #93a1b4;
+  --border: #223044;
+}
+
+html.light {
+  --bg: #ffffff;
+  --bg-panel: #f4f6fa;
+  --bg-panel-raised: #e9edf3;
+  --text: #0b0f14;
+  --text-muted: #5a6b80;
+  --border: #d7dee8;
+}
+
+@layer base {
+  html {
+    font-size: 16px;
+    background: var(--bg);
+    color: var(--text);
+    color-scheme: dark;
+  }
+
+  html.light {
+    color-scheme: light;
+  }
+
+  body {
+    @apply font-sans antialiased;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  /* The KaTeX font stack */
+  .katex {
+    font-size: 1.05em;
+  }
+
+  /* Typography scale — only these */
+  .display {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .heading {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .body {
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.75;
+  }
+  .meta {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+  @media (min-width: 768px) {
+    .body {
+      font-size: 18px;
+    }
+  }
+
+  /* Motion — 150–250ms ease-out only; respect reduced motion */
+  @keyframes success-pop {
+    0% {
+      transform: scale(0.85);
+      opacity: 0;
+    }
+    60% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      box-shadow: 0 0 0 0 rgba(79, 124, 255, 0.45);
+    }
+    70% {
+      box-shadow: 0 0 0 8px rgba(79, 124, 255, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(79, 124, 255, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* ---- Mastery states (Section 7) — typographic/geometric marks only ---- */
+  .mastery-locked {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .mastery-available {
+    border: 1px solid var(--primary);
+    color: var(--primary);
+  }
+
+  .mastery-in-progress {
+    border: 1px solid var(--warn);
+    animation: pulse-ring 1.8s ease-out infinite;
+  }
+
+  .mastery-mastered {
+    border: 1px solid var(--success);
+    background: rgba(34, 197, 94, 0.08);
+  }
+
+  /* ---- Buttons: one primary, one ghost — no gradients/shadows ---- */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-[12px] font-semibold;
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.6rem 1.25rem;
+    transition: transform 0.12s ease-out, background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
+  }
+  .btn:active {
+    transform: scale(0.97);
+  }
+  .btn:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  .btn-primary {
+    background: var(--primary);
+    color: #fff;
+  }
+  .btn-primary:hover {
+    background: color-mix(in srgb, var(--primary) 88%, white);
+  }
+
+  .btn-ghost {
+    border: 1px solid var(--border);
+    color: var(--text);
+    background: transparent;
+  }
+  .btn-ghost:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+
+  /* ---- Surfaces: flat, hairline borders, 12px radius ---- */
+  .panel {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-sm;
+    background: var(--bg-panel-raised);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+
+  /* ---- Widget surfaces ---- */
+  .widget-surface {
+    background: var(--bg-panel-raised);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    touch-action: manipulation;
+  }
+
+  .text-muted {
+    color: var(--text-muted);
+  }
+
+  .border-token {
+    border-color: var(--border);
+  }
+
+  /* Lesson content reading column — whitespace as separator */
+  .reading {
+    max-width: 640px;
+    margin-inline: auto;
+    font-size: 17px;
+    line-height: 1.75;
+  }
+  @media (min-width: 768px) {
+    .reading {
+      font-size: 18px;
+    }
+  }
+
+  /* Prediction / watch-out boxes — hairline left-border, no filled backgrounds */
+  .accent-line {
+    border-left: 3px solid var(--primary);
+    padding-left: 1rem;
+  }
+  .accent-line-warn {
+    border-left: 3px solid var(--warn);
+    padding-left: 1rem;
+  }
+  .accent-line-error {
+    border-left: 3px solid var(--error);
+    padding-left: 1rem;
+  }
+
+  .success-pop {
+    animation: success-pop 300ms ease-out;
+  }
+}

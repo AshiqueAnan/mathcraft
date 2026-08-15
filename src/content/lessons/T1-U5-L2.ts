@@ -1,0 +1,231 @@
+import type { Lesson } from "../schema";
+
+export const T1U5L2: Lesson = {
+  id: "T1-U5-L2",
+  tier: 1,
+  unit: "Decimals & percentages",
+  title: "Percent of What?",
+  prerequisites: ["T1-U4-L6","T1-U5-L1"],
+  estimatedMinutes: 12,
+  hook: {
+    question: "A store says 'SALE: up to 60% off!' Another says 'Save 60%!' Are they promising the same thing? A percentage without a stated whole is a costume with no body inside.",
+    type: "paradox",
+  },
+  intuitionBlocks: [
+    {
+      widget: "ratio-bar",
+      narrative: "The bar shows a whole split into a part and the rest. Move the 'part' slider and watch what '40% of the bar' means: 40% is always 40 parts out of 100 parts of THE SAME whole. Change the whole and 40% changes size.",
+    },
+  ],
+  formalBlocks: [
+    {
+      definition: "A percentage is meaningless without its WHOLE (the base). 40% of 50 is 20, but 40% of 500 is 200. The recipe: part = percent × whole, written as $\\text{part} = \\frac{p}{100} \\times \\text{whole}$.",
+      examples: [
+        "40% of 50: $\\frac{40}{100} \\times 50 = 0.4 \\times 50 = 20$.",
+        "30% of 200: $0.3 \\times 200 = 60$.",
+      ],
+      pitfall: "'Percent of WHAT?' is the first question. 10% of a tiny pizza is tiny; 10% of a huge pizza is huge. Never quote a percent without naming its whole.", altExplanations: ["FOOD: 10% of a small pizza is a snack; 10% of a party pizza is a meal. The percent is identical — the whole (the base) decides the slice size. Always ask 'percent of what?'", "MONEY: a 5% tip on a $20 meal is $1; 5% on a $200 meal is $10. Same percent, different base, different tip. The base is the number you multiply the percent against."],
+    },
+  ],
+  gutChecks: [
+    { prompt: "What is 20% of 60?", answer: "12 — 0.2 × 60 = 12." },
+  ],
+  quiz: {
+    pool: [
+      {
+        id: "U5L2-mcq-1", type: "mcq", category: "procedural",
+        prompt: "What is 20% of 150?",
+        options: [{ id: "a", text: "30" }, { id: "b", text: "15" }, { id: "c", text: "45" }, { id: "d", text: "300" }],
+        correctOptionId: "a",
+        diagnoses: { b: "15 is 10% — you need double.", c: "45 is 30%.", d: "300 is 200%." },
+        explanation: "0.2 × 150 = 30.",
+        hints: ["20% = 0.2.", "0.2 × 150.", "30."],
+      },
+      {
+        id: "U5L2-mcq-2", type: "mcq", category: "conceptual",
+        prompt: "What makes '50% of a ticket price' ambiguous?",
+        options: [
+          { id: "a", text: "We don't know the ticket's original whole" },
+          { id: "b", text: "Percentages can't apply to money" },
+          { id: "c", text: "50% doesn't have a value" },
+          { id: "d", text: "Nothing — it's always $50" },
+        ],
+        correctOptionId: "a",
+        diagnoses: { b: "Percentages apply to money all the time.", c: "50% has a value once its whole is known.", d: "50% of $10 is $5; of $200 is $100 — the whole matters." },
+        explanation: "Without the ticket's original price (the whole), 50% names no specific amount.",
+        hints: ["Percent of WHAT?", "Which number is the whole?", "The original ticket price."],
+      },
+      {
+        id: "U5L2-mcq-3", type: "mcq", category: "word",
+        prompt: "A school has 800 students; 35% walk. How many walk?",
+        options: [{ id: "a", text: "280" }, { id: "b", text: "35" }, { id: "c", text: "270" }, { id: "d", text: "306" }],
+        correctOptionId: "a",
+        diagnoses: { b: "35 is the percent, not a count.", c: "270 = 33.75%.", d: "306 = 38.25%." },
+        explanation: "0.35 × 800 = 280.",
+        hints: ["35% = 0.35.", "0.35 × 800.", "280."],
+      },
+      {
+        id: "U5L2-mcq-4", type: "mcq", category: "conceptual",
+        prompt: "Which is larger: 25% of 80 or 25% of 120?",
+        options: [{ id: "a", text: "25% of 120" }, { id: "b", text: "25% of 80" }, { id: "c", text: "They are equal" }, { id: "d", text: "Cannot tell" }],
+        correctOptionId: "a",
+        diagnoses: { b: "Same percent, bigger whole → bigger part.", c: "The wholes differ, so the parts differ.", d: "We can compare: 0.25×120 = 30 > 0.25×80 = 20." },
+        explanation: "25% of 120 = 30; 25% of 80 = 20. Bigger whole, same rate, bigger part.",
+        hints: ["25% of each.", "0.25 × 120.", "30 > 20."],
+      },
+      {
+        id: "U5L2-mcq-5", type: "mcq", category: "procedural",
+        prompt: "12 is what percent of 60?",
+        options: [{ id: "a", text: "20%" }, { id: "b", text: "5%" }, { id: "c", text: "50%" }, { id: "d", text: "12%" }],
+        correctOptionId: "a",
+        diagnoses: { b: "5% of 60 = 3, not 12.", c: "50% of 60 = 30.", d: "12% of 60 = 7.2." },
+        explanation: "12 ÷ 60 = 0.2 = 20%.",
+        hints: ["Part ÷ whole.", "12 ÷ 60.", "0.2 = 20%."],
+      },
+      {
+        id: "U5L2-mcq-6", type: "mcq", category: "word",
+        prompt: "A phone costs $240. A 15% discount is applied. How much do you pay?",
+        options: [{ id: "a", text: "$204" }, { id: "b", text: "$36" }, { id: "c", text: "$225" }, { id: "d", text: "$276" }],
+        correctOptionId: "a",
+        diagnoses: { b: "$36 is the discount, not the new price.", c: "$225 = 240 − 15.", d: "$276 added a 15% markup." },
+        explanation: "Discount = 0.15 × 240 = $36. Pay = 240 − 36 = $204.",
+        hints: ["Find the discount.", "240 − discount.", "$204."],
+      },
+      {
+        id: "U5L2-num-1", type: "numeric-input", category: "procedural",
+        prompt: "What is 30% of 90?", answer: 27, tolerance: 0,
+        explanation: "0.3 × 90 = 27.",
+        hints: ["30% = 0.3.", "0.3 × 90.", "27."],
+      },
+      {
+        id: "U5L2-num-2", type: "numeric-input", category: "procedural",
+        prompt: "45 is what percent of 90?", answer: 50, tolerance: 0, unit: "%",
+        explanation: "45 ÷ 90 = 0.5 = 50%.",
+        hints: ["Part ÷ whole.", "45 ÷ 90.", "0.5 = 50%."],
+      },
+      {
+        id: "U5L2-num-3", type: "numeric-input", category: "conceptual",
+        prompt: "If 5% of a number is 4, what is the number (the whole)?",
+        answer: 80, tolerance: 0,
+        explanation: "5% = 0.05. whole = 4 ÷ 0.05 = 80.",
+        hints: ["whole = part ÷ percent.", "4 ÷ 0.05.", "80."],
+      },
+      {
+        id: "U5L2-num-4", type: "numeric-input", category: "word",
+        prompt: "A bag has 24 red balls. If 40% of the balls are red, how many balls total?",
+        answer: 60, tolerance: 0,
+        explanation: "whole = 24 ÷ 0.4 = 60.",
+        hints: ["24 = 40% of total.", "24 ÷ 0.4.", "60."],
+      },
+      {
+        id: "U5L2-frac-1", type: "fraction-input", category: "conceptual",
+        prompt: "Write 25% as a simplified fraction.",
+        numerator: 1, denominator: 4, acceptEquivalent: true,
+        explanation: "25% = 25/100 = 1/4.",
+        hints: ["25 out of 100.", "Simplify.", "1/4."],
+      },
+      {
+        id: "U5L2-tf-1", type: "true-false-justify", category: "conceptual",
+        prompt: "20% of 50 is bigger than 50% of 20.",
+        isTrue: false,
+        explanation: "20% of 50 = 10; 50% of 20 = 10. Equal.",
+        hints: ["0.2 × 50.", "0.5 × 20.", "Both 10 — false."],
+      },
+      {
+        id: "U5L2-tf-2", type: "true-false-justify", category: "conceptual",
+        prompt: "A percentage always needs a whole (base) to have meaning.",
+        isTrue: true,
+        explanation: "50% alone names no amount — the whole decides the actual size of the part.",
+        hints: ["50% of what?", "The whole is required.", "True."],
+      },
+      {
+        id: "U5L2-order-1", type: "order-steps", category: "word",
+        prompt: "Order the steps to find 15% of 40.",
+        sequence: ["Write 15% as 0.15", "Multiply: 0.15 × 40", "0.15 × 40 = 6", "Answer: 6"],
+        diagnoses: {
+          "Multiply: 0.15 × 40@0": "Convert the percent first.",
+          "0.15 × 40 = 6@0": "Do the multiplication.",
+          "Answer: 6@0": "6 is the final answer.",
+        },
+        explanation: "Convert percent to decimal, then multiply by the whole.",
+        hints: ["15% = 0.15.", "0.15 × 40.", "6."],
+      },
+      {
+        id: "U5L2-drag-1", type: "drag-match", category: "conceptual",
+        prompt: "Match each phrase to its correct expression.",
+        pairs: [
+          { source: "40% of 50", target: "0.4 × 50" },
+          { source: "25% of 80", target: "0.25 × 80" },
+          { source: "120% of 30", target: "1.2 × 30" },
+        ],
+        diagnoses: {
+          "40% of 50->0.4 × 50": "Correct — 40% = 0.4.",
+          "25% of 80->0.4 × 80": "25% = 0.25, not 0.4.",
+          "120% of 30->0.12 × 30": "120% = 1.2, not 0.12.",
+        },
+        explanation: "Percent 'of' whole → percent-as-decimal × whole.",
+        hints: ["40% → 0.4.", "25% → 0.25.", "120% → 1.2."],
+      },
+      {
+        id: "U5L2-graph-1", type: "graph-interact", category: "word",
+        prompt: "Slider (key: value): set it to 20% of 150 as a decimal result.",
+        challenge: "Set the slider to 30.",
+        validate: { value: 30 },
+        tolerance: 0.01,
+        explanation: "0.2 × 150 = 30.",
+        hints: ["20% as a decimal.", "0.2 × 150.", "30."],
+      },
+    ],
+    selection: { procedural: 2, conceptual: 2, word: 1 },
+    passThreshold: 0.8,
+  },
+  commonMistakes: [
+    {
+      wrongPattern: "forgets the whole exists",
+      diagnosis: "A percent with no whole is meaningless. Always name what the percent is OF before computing.",
+      hint: "Ask: 'Percent of what?'",
+    },
+    {
+      wrongPattern: "writes 8% as 0.8",
+      diagnosis: "8% = 0.08, not 0.8. Percent means per hundred — two decimal places.",
+      hint: "8% = 8/100 = 0.08.",
+    },
+    {
+      wrongPattern: "adds rather than multiplying the discount",
+      diagnosis: "A 15% discount means pay 100% − 15% = 85% of the price, or subtract the discount AFTER computing it.",
+      hint: "Find the discount (0.15 × price), then subtract.",
+    },
+  ],
+  recallTags: ["percentages", "percent-of", "base"],
+  discovery: {
+    challenges: [
+      {
+        instruction: "Set the whole bar to 10 parts and shade 40% of it. Now change the whole to 20 parts and shade 40% again.",
+        observe: "Same 40%, different-sized shaded part — the WHole decides how big the part is.",
+      },
+      {
+        instruction: "Try 40% of 30 and 40% of 60 on the RatioBar.",
+        observe: "40% of 60 is double 40% of 30 — the percent stayed, the whole doubled, the part doubled.",
+      },
+    ],
+    predict: {
+      prompt: "Before you slide: 25% of 80 — bigger or smaller than 25% of 40?",
+      options: [
+        { id: "a", text: "Bigger" },
+        { id: "b", text: "Smaller" },
+        { id: "c", text: "Equal" },
+      ],
+      reveal: "Bigger — same rate (25%) but a bigger whole makes a bigger part.",
+    },
+    sayItYourWay: {
+      prompt: "What does 'percent of' really ask for?",
+      phrasings: [
+        { id: "a", text: "A part of a specific whole", correct: true, why: "Percent names the rate; the whole provides the actual size." },
+        { id: "b", text: "A number that stands alone", correct: false, why: "Percent alone has no size — it needs its whole." },
+        { id: "c", text: "Always a bigger number", correct: false, why: "Less than 100% gives a smaller part; the result can be any size." },
+      ],
+      formalName: "percentage of a quantity (base)",
+    },
+    stretch: "If 40% of an unknown whole is 24, can you run the machine backwards to find the whole?",
+  },
+};

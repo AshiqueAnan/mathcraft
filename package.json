@@ -1,0 +1,44 @@
+{
+  "name": "mathcraft",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Mathcraft — free, open-source interactive O Level math concepts website",
+  "scripts": {
+    "dev": "next dev",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "lint:lessons": "node scripts/lint-lessons.mjs",
+    "check:manifest": "node scripts/check-manifest.mjs",
+    "build": "node scripts/check-manifest.mjs && node scripts/gen-sw.mjs && next build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "framer-motion": "^11.11.0",
+    "katex": "^0.16.11",
+    "next": "^15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zustand": "^5.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "@testing-library/jest-dom": "^6.6.0",
+    "@testing-library/react": "^16.1.0",
+    "@types/katex": "^0.16.7",
+    "@types/node": "^20.17.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^15.1.0",
+    "jsdom": "^25.0.0",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}
