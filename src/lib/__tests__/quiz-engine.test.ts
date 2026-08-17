@@ -2,6 +2,8 @@ import { describe, it, expect } from "vitest";
 import {
   buildInitialSession,
   buildQuizSession,
+  buildDisplayOrders,
+  withDisplayOrders,
   checkAnswer,
   advance,
   isQuizComplete,
@@ -115,6 +117,48 @@ describe("quiz engine", () => {
     const bad = checkAnswer(q, ["B", "A", "C"]);
     expect(bad.correct).toBe(false);
     expect(bad.diagnosis).toBe("B comes second.");
+  });
+
+  it("display shuffle never changes the authored option multiset", () => {
+    const mcq = lesson.quiz.pool.find((q) => q.type === "mcq");
+    if (!mcq || mcq.type !== "mcq") throw new Error("expected mcq");
+    const orders = buildDisplayOrders(lesson.quiz.pool, [mcq.id]);
+    const order = orders[mcq.id];
+    expect(order).toHaveLength(mcq.options.length);
+    expect([...order].sort()).toEqual(mcq.options.map((o) => o.id).sort());
+    // Every option appears exactly once (correct solution stays untouched).
+    expect(new Set(order).size).toBe(order.length);
+  });
+
+  it("withDisplayOrders populates per-question shuffles for mcq/drag/order questions only", () => {
+    const session = buildInitialSession(lesson.quiz);
+    const shuffled = withDisplayOrders(session, lesson.quiz.pool);
+    for (const qid of shuffled.questionIds) {
+      const q = lesson.quiz.pool.find((p) => p.id === qid);
+      if (!q) continue;
+      const order = shuffled.orderMap[qid];
+      if (q.type === "mcq") {
+        expect(order).toHaveLength(q.options.length);
+      } else if (q.type === "drag-match") {
+        expect(order && order.length).toBe(q.pairs.length);
+      } else if (q.type === "order-steps") {
+        expect(order && order.length).toBe(q.sequence.length);
+      } else {
+        // Non-choice questions get no display order.
+        expect(order).toBeUndefined();
+      }
+    }
+  });
+
+  it("retakes get fresh display shuffles, and scoring stays ID-based", () => {
+    const retake = buildQuizSession(lesson.quiz);
+    expect(Object.keys(retake.orderMap).length).toBeGreaterThan(0);
+    const mcq = lesson.quiz.pool.find((q) => q.type === "mcq");
+    if (!mcq || mcq.type !== "mcq") throw new Error("expected mcq");
+    // Display order must not affect correctness: the ID-based check still passes.
+    expect(checkAnswer(mcq, mcq.correctOptionId).correct).toBe(true);
+    const wrong = mcq.options.find((o) => o.id !== mcq.correctOptionId);
+    expect(wrong && checkAnswer(mcq, wrong.id).correct).toBe(false);
   });
 
   it("checks graph-interact within tolerance", () => {

@@ -7,6 +7,15 @@ export interface QuizSession {
   answered: boolean[];
   /** wrongPattern keys matched from answers, for remediation. */
   mistakes: string[];
+  /**
+   * Per-sitting display shuffle, keyed by question id. What each value orders:
+   * - mcq: option ids in display order
+   * - drag-match: target strings in display order
+   * - order-steps: sequence steps in display order
+   * A missing key means "render authored order" (the SSR/hydration-safe default).
+   * Scoring stays ID/content-based, so display order never affects correctness.
+   */
+  orderMap: Record<string, string[]>;
 }
 
 function shuffle<T>(arr: T[]): T[] {
@@ -16,6 +25,29 @@ function shuffle<T>(arr: T[]): T[] {
     [a[i], a[j]] = [a[j], a[i]];
   }
   return a;
+}
+
+/**
+ * Build the per-question display-shuffle map for a sitting.
+ * Only shuffle choice questions (mcq options, drag-match targets, order-steps).
+ * This is what kills the "correct answer is always first" bias — options are
+ * re-ordered for display while their stable ids/contents keep scoring correct.
+ */
+export function buildDisplayOrders(pool: Question[], questionIds: string[]): Record<string, string[]> {
+  const map: Record<string, string[]> = {};
+  for (const qid of questionIds) {
+    const q = pool.find((p) => p.id === qid);
+    if (!q) continue;
+    if (q.type === "mcq") map[qid] = shuffle(q.options.map((o) => o.id));
+    else if (q.type === "drag-match") map[qid] = shuffle(q.pairs.map((p) => p.target));
+    else if (q.type === "order-steps") map[qid] = shuffle([...q.sequence]);
+  }
+  return map;
+}
+
+/** Attach display shuffles to an existing session (used post-hydration). */
+export function withDisplayOrders(session: QuizSession, pool: Question[]): QuizSession {
+  return { ...session, orderMap: buildDisplayOrders(pool, session.questionIds) };
 }
 
 /**
@@ -38,6 +70,7 @@ export function buildInitialSession(spec: QuizSpec): QuizSession {
     correctCount: 0,
     answered: questions.map(() => false),
     mistakes: [],
+    orderMap: {},
   };
 }
 
@@ -50,13 +83,16 @@ export function buildQuizSession(spec: QuizSpec): QuizSession {
   const questions = [...pick("procedural", procedural), ...pick("conceptual", conceptual), ...pick("word", word)];
   // Re-shuffle so the fixed categories are interleaved.
   const ordered = shuffle(questions);
+  const questionIds = ordered.map((q) => q.id);
 
   return {
-    questionIds: ordered.map((q) => q.id),
+    questionIds,
     currentIndex: 0,
     correctCount: 0,
     answered: ordered.map(() => false),
     mistakes: [],
+    // Retakes get fresh display shuffles too — options land in new spots each try.
+    orderMap: buildDisplayOrders(spec.pool, questionIds),
   };
 }
 

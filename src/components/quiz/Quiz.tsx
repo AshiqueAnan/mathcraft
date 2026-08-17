@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import type { Lesson, Question } from "@/content/schema";
 import {
@@ -12,6 +12,7 @@ import {
   isQuizComplete,
   quizScore,
   quizPassed,
+  withDisplayOrders,
   type QuizSession,
 } from "@/lib/quiz-engine";
 import { useProgressStore } from "@/lib/progress-store";
@@ -25,8 +26,11 @@ interface QuizProps {
 }
 
 export function Quiz({ lesson }: QuizProps) {
-  // Deterministic first attempt (SSR-safe). Retakes are randomized.
+  // Deterministic first attempt (SSR-safe). Options keep authored order during
+  // SSR; after mount we attach per-question display shuffles so the correct
+  // answer never sits in a predictable position.
   const [session, setSession] = useState<QuizSession>(() => buildInitialSession(lesson.quiz));
+  const [mounted, setMounted] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
   const [numericValue, setNumericValue] = useState("");
   const [dragMap, setDragMap] = useState<Record<string, string>>({});
@@ -45,6 +49,14 @@ export function Quiz({ lesson }: QuizProps) {
   const question: Question | undefined = session.questionIds[session.currentIndex]
     ? lesson.quiz.pool.find((q) => q.id === session.questionIds[session.currentIndex])
     : undefined;
+
+  // After hydration, attach per-question display shuffles so the correct option
+  // never sits in a predictable position. SSR keeps authored order (no hydration
+  // mismatch); clients see shuffled order from this point on.
+  useEffect(() => {
+    setMounted(true);
+    setSession((s) => (Object.keys(s.orderMap).length ? s : withDisplayOrders(s, lesson.quiz.pool)));
+  }, [lesson.quiz.pool]);
 
   function submit() {
     if (!question) return;
@@ -189,7 +201,10 @@ export function Quiz({ lesson }: QuizProps) {
       <div className="mt-4 space-y-2">
         {question.type === "mcq" && (
           <div className="space-y-2">
-            {question.options.map((opt) => (
+            {(mounted && session.orderMap[question.id] ? session.orderMap[question.id] : question.options.map((o) => o.id)).map((optId) => {
+              const opt = question.options.find((o) => o.id === optId);
+              if (!opt) return null;
+              return (
               <button
                 key={opt.id}
                 type="button"
@@ -202,7 +217,8 @@ export function Quiz({ lesson }: QuizProps) {
               >
                 <RichText text={opt.text} />
               </button>
-            ))}
+              );
+            })}
           </div>
         )}
 
@@ -277,9 +293,11 @@ export function Quiz({ lesson }: QuizProps) {
                 })}
               </div>
 
-              {/* Targets (available targets only) */}
+              {/* Targets (available targets only, shuffled after mount) */}
               <div className="space-y-2 sm:order-none order-last sm:col-start-3">
-                {question.pairs.map((p) => {
+                {(mounted && session.orderMap[question.id] ? session.orderMap[question.id] : question.pairs.map((p) => p.target)).map((target) => {
+                  const p = question.pairs.find((x) => x.target === target);
+                  if (!p) return null;
                   const used = Object.values(dragMap).includes(p.target);
                   const available = !used || dragMap[pendingSource ?? ""] === p.target;
                   return (
@@ -313,7 +331,7 @@ export function Quiz({ lesson }: QuizProps) {
           <div className="space-y-4" data-question-type="order-steps">
             <p className="meta">Tap the steps in the correct order. Tap a chosen step to undo.</p>
             <div className="flex flex-wrap gap-2">
-              {question.sequence.map((step) => {
+              {(mounted && session.orderMap[question.id] ? session.orderMap[question.id] : question.sequence).map((step) => {
                 const alreadyChosen = orderList.includes(step);
                 return (
                   <button
