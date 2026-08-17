@@ -171,7 +171,7 @@ export const T1U4L3: Lesson = {
         hints: [
           "What common denominator works for 3 and 6?",
           "6 is the LCM. Multiply top and bottom of $\\frac{2}{3}$ by 2.",
-          "2×2 = 4.",
+          "$\\frac{2}{3} = \\frac{2 \\times 2}{3 \\times 2} = \\frac{4}{6}$ — so the renamed numerator is 4 (and 4 < 5, so $\\frac{5}{6}$ is bigger).",
         ],
       },
       {
@@ -241,7 +241,7 @@ export const T1U4L3: Lesson = {
         answer: 6,
         tolerance: 0,
         explanation: "$\\frac{3}{5} = \\frac{3 \\times 2}{5 \\times 2} = \\frac{6}{10}$ — so 6 (and 6 < 7, so $\\frac{7}{10}$ is bigger).",
-        hints: ["Rename 3/5 into tenths.", "5 × 2 = 10, 3 × 2 = 6.", "6."],
+        hints: ["Rename 3/5 into tenths.", "5 × 2 = 10, 3 × 2 = 6.", "$\\frac{3}{5} = \\frac{3 \\times 2}{5 \\times 2} = \\frac{6}{10}$ — so 6 (and 6 < 7, so $\\frac{7}{10}$ is bigger)."],
       },
       {
         id: "L3-num-3",
@@ -251,7 +251,7 @@ export const T1U4L3: Lesson = {
         answer: 4,
         tolerance: 0,
         explanation: "$\\frac{1}{2} = \\frac{4}{8}$ — four eighths.",
-        hints: ["Half of the eighths line.", "1×4 / 2×4.", "4."],
+        hints: ["Half of the eighths line.", "1×4 / 2×4.", "$\\frac{1}{2} = \\frac{4}{8}$ — four eighths."],
       },
       {
         id: "L3-tf-2",
@@ -260,7 +260,7 @@ export const T1U4L3: Lesson = {
         prompt: "$\\frac{5}{6}$ is greater than $\\frac{2}{3}$.",
         isTrue: true,
         explanation: "$\\frac{2}{3} = \\frac{4}{6}$; 5 > 4, so yes.",
-        hints: ["Rename 2/3 to sixths.", "4/6 vs 5/6.", "True."],
+        hints: ["Rename 2/3 to sixths.", "4/6 vs 5/6.", "$\\frac{2}{3} = \\frac{4}{6}$; 5 > 4, so yes."],
       },
       {
         id: "L3-frac-1",
@@ -271,7 +271,7 @@ export const T1U4L3: Lesson = {
         denominator: 12,
         acceptEquivalent: true,
         explanation: "$\\frac{3}{4} = \\frac{9}{12}$ is larger than $\\frac{2}{3} = \\frac{8}{12}$.",
-        hints: ["Rename both to twelfths.", "8/12 vs 9/12.", "9/12."],
+        hints: ["Rename both to twelfths.", "8/12 vs 9/12.", "$\\frac{3}{4} = \\frac{9}{12}$ is larger than $\\frac{2}{3} = \\frac{8}{12}$."],
       },
       {
         id: "L3-order-1",
@@ -310,7 +310,7 @@ export const T1U4L3: Lesson = {
         type: "graph-interact",
         category: "word",
         prompt: "Slider (key: value): set it to the value of the LARGER of $\\frac{3}{4}$ and $\\frac{5}{6}$ as a decimal.",
-        challenge: "Set the slider to 0.833.",
+        challenge: "Adjust the values below so they match the condition described in the prompt.",
         validate: { value: 0.833 },
         tolerance: 0.02,
         explanation: "5/6 ≈ 0.833 is larger than 3/4 = 0.75.",

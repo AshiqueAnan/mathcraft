@@ -133,7 +133,7 @@ export const T1U4L5: Lesson = {
         hints: [
           "Top × top.",
           "Bottom × bottom.",
-          "1/6.",
+          "$\\frac{1 \\times 1}{2 \\times 3} = \\frac{1}{6}$.",
         ],
       },
       {
@@ -240,7 +240,7 @@ export const T1U4L5: Lesson = {
         prompt: "Compute $\\frac{3}{7} \\times \\frac{7}{9}$. What is the simplified answer as a decimal?",
         answer: 0.333, tolerance: 0.001,
         explanation: "$\\frac{3\\times7}{7\\times9} = \\frac{21}{63} = \\frac{1}{3}$ ≈ 0.333.",
-        hints: ["Cancel the 7s.", "3/9 = 1/3.", "0.333."],
+        hints: ["Cancel the 7s.", "3/9 = 1/3.", "$\\frac{3\\times7}{7\\times9} = \\frac{21}{63} = \\frac{1}{3}$ ≈ 0."],
       },
       {
         id: "L5-num-3",
@@ -249,7 +249,7 @@ export const T1U4L5: Lesson = {
         prompt: "You eat $\\frac{2}{5}$ of a pizza, then your brother eats a third of what's left. What fraction of the ORIGINAL pizza does your brother eat as a decimal?",
         answer: 0.2, tolerance: 0.001,
         explanation: "Left: $\\frac{3}{5}$. Brother: $\\frac{1}{3} \\times \\frac{3}{5} = \\frac{3}{15} = \\frac{1}{5}$ = 0.2.",
-        hints: ["What's left after 2/5?", "1/3 of that.", "1/5 = 0.2."],
+        hints: ["What's left after 2/5?", "1/3 of that.", "Left: $\\frac{3}{5}$."],
       },
       {
         id: "L5-tf-1",
@@ -267,7 +267,7 @@ export const T1U4L5: Lesson = {
         prompt: "To multiply fractions, you must first find a common denominator.",
         isTrue: false,
         explanation: "Multiplication multiplies straight across — no common denominator needed (that's only for adding/subtracting).",
-        hints: ["Do you need same-size parts to multiply?", "Multiply tops and bottoms directly.", "False."],
+        hints: ["Do you need same-size parts to multiply?", "Multiply tops and bottoms directly.", "Multiplication multiplies straight across — no common denominator needed (that's only for adding/subtracting)."],
       },
       {
         id: "L5-order-1",
@@ -281,7 +281,7 @@ export const T1U4L5: Lesson = {
           "Simplify to 2/5@0": "Simplifying comes last.",
         },
         explanation: "6/15 simplifies to 2/5 by dividing by 3.",
-        hints: ["Top × top.", "Bottom × bottom.", "Simplify."],
+        hints: ["Top × top.", "Bottom × bottom.", "6/15 simplifies to 2/5 by dividing by 3."],
       },
       {
         id: "L5-drag-1",
@@ -299,18 +299,18 @@ export const T1U4L5: Lesson = {
           "$\\frac{2}{5} \\times \\frac{5}{6}$->$\\frac{1}{4}$": "10/30 = 1/3, not 1/4.",
         },
         explanation: "2/6 = 1/3; 3/12 = 1/4; 10/30 = 1/3.",
-        hints: ["2/6.", "3/12.", "10/30."],
+        hints: ["2/6.", "3/12.", "2/6 = 1/3; 3/12 = 1/4; 10/30 = 1/3."],
       },
       {
         id: "L5-graph-1",
         type: "graph-interact",
         category: "word",
         prompt: "Slider (key: value): set it to the decimal value of $\\frac{2}{3} \\times \\frac{3}{4}$.",
-        challenge: "Set the slider to 0.5.",
+        challenge: "Adjust the values below so they match the condition described in the prompt.",
         validate: { value: 0.5 },
         tolerance: 0.02,
         explanation: "6/12 = 1/2 = 0.5.",
-        hints: ["2×3, 3×4.", "6/12.", "0.5."],
+        hints: ["2×3, 3×4.", "6/12.", "6/12 = 1/2 = 0."],
       },
     ],
     selection: { procedural: 2, conceptual: 2, word: 1 },

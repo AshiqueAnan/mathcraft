@@ -231,7 +231,7 @@ export const T1U4L2: Lesson = {
         answer: 15,
         tolerance: 0,
         explanation: "6 × 3 = 18, so 5 × 3 = 15.",
-        hints: ["What do you multiply 6 by to get 18?", "6 × 3 = 18.", "5 × 3 = 15."],
+        hints: ["What do you multiply 6 by to get 18?", "6 × 3 = 18.", "6 × 3 = 18, so 5 × 3 = 15."],
       },
       {
         id: "L2-tf-1",
@@ -288,7 +288,7 @@ export const T1U4L2: Lesson = {
         type: "graph-interact",
         category: "word",
         prompt: "Adjust the slider (key: value) so the shaded fraction equals $\\frac{1}{2}$ as a decimal.",
-        challenge: "Set the slider to 0.5.",
+        challenge: "Adjust the slider  so the shaded fraction equals $\\frac{1}{2}$ as a decimal. — adjust the values below to match the condition.",
         validate: { value: 0.5 },
         tolerance: 0.05,
         explanation: "$\\frac{1}{2}$ = 0.5 as a decimal.",

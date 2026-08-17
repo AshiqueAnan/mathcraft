@@ -5,7 +5,7 @@
  * Next). CACHE_NAME carries a per-build ID so every deploy cleanly invalidates
  * the previous cache via the activate handler below.
  */
-const CACHE_NAME = "mathcraft-cache-20260814204625";
+const CACHE_NAME = "mathcraft-cache-20260817170611";
 
 // Resolve the site root dynamically so this works on any host/base path.
 let BASE = "/";

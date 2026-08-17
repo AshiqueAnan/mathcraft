@@ -53,20 +53,26 @@ function issues(L: Lesson): string[] {
     if (!Array.isArray(q.hints) || q.hints.length !== 3 || q.hints.some((h) => !h?.trim())) fail(`${q?.id}: 3 hints`);
 
     // Fix-pass guard 1c-2: hint #3 must be a worked micro-step, not a bare answer.
+    // A hint is "bare" when it carries no reasoning signal — a bare number, a
+    // single word, yes/no, identical to hint 2, or exactly the correct option's
+    // text. Being merely short is NOT enough to fail: "3² = 3 × 3 = 9." (14
+    // chars) is a perfectly good worked step. (Tuned per the fix-pass md: be
+    // conservative, don't over-fail.)
     const h3 = q.hints[2]?.trim() ?? "";
     const h2 = q.hints[1]?.trim() ?? "";
-    if (h3.length > 0 && h3.length < 15) fail(`${q?.id}: hint 3 too short (${h3.length} chars) — needs a worked step`);
-    else {
+    const hasReasoningSignal = /[=×÷√²³]|\b(?:plus|minus|times|divided by|equals|so|then|because|same as|greater|smaller|first)\b/i.test(h3);
+    if (h3.length > 0) {
       const bareNumber = /^[+-]?[\d.,%²³√]+$/.test(h3);
       const singleWord = /^[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ'’-]*\.?$/.test(h3) && !h3.includes(" ");
       const yesNo = /^(yes|no|true|false)\.?$/i.test(h3);
       const equalsH2 = h3 === h2;
       let equalsCorrectText = false;
-      if (q.type === "mcq" && q.type === "mcq") {
+      if (q.type === "mcq") {
         const correct = q.options.find((o) => o.id === q.correctOptionId);
         if (correct && h3.replace(/\.$/, "") === correct.text.replace(/\.$/, "")) equalsCorrectText = true;
       }
-      if (bareNumber || singleWord || yesNo || equalsH2 || equalsCorrectText) {
+      const bare = (bareNumber || singleWord || yesNo || equalsH2 || equalsCorrectText) && !hasReasoningSignal;
+      if (bare) {
         fail(`${q?.id}: hint 3 is a bare answer ("${h3.slice(0, 40)}") — rewrite as a worked micro-step`);
       }
     }

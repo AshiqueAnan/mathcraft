@@ -203,7 +203,7 @@ export const T1U4L1: Lesson = {
           d: "3 isn't in this fraction at all.",
         },
         explanation: "The numerator (top) is 4 — how many parts you take.",
-        hints: ["The numerator is on top.", "4 parts are taken.", "4."],
+        hints: ["The numerator is on top.", "4 parts are taken.", "The numerator (top) is 4 — how many parts you take."],
       },
       {
         id: "L1-mcq-6",
@@ -233,7 +233,7 @@ export const T1U4L1: Lesson = {
         answer: 4,
         tolerance: 0,
         explanation: "The numerator is how many parts you took — 4.",
-        hints: ["Numerator = parts taken.", "You ate 4 slices.", "4."],
+        hints: ["Numerator = parts taken.", "You ate 4 slices.", "The numerator is how many parts you took — 4."],
       },
       {
         id: "L1-num-4",
@@ -243,7 +243,7 @@ export const T1U4L1: Lesson = {
         answer: 12,
         tolerance: 0,
         explanation: "The denominator (bottom) is 12 — the number of equal parts.",
-        hints: ["Denominator is on the bottom.", "12 equal parts.", "12."],
+        hints: ["Denominator is on the bottom.", "12 equal parts.", "The denominator (bottom) is 12 — the number of equal parts."],
       },
       {
         id: "L1-frac-1",
@@ -254,7 +254,7 @@ export const T1U4L1: Lesson = {
         denominator: 6,
         acceptEquivalent: false,
         explanation: "5 pieces used out of 6 total pieces.",
-        hints: ["Used = 5.", "Total = 6.", "5/6."],
+        hints: ["Used = 5.", "Total = 6.", "5 pieces used out of 6 total pieces."],
       },
       {
         id: "L1-frac-2",
@@ -265,7 +265,7 @@ export const T1U4L1: Lesson = {
         denominator: 4,
         acceptEquivalent: false,
         explanation: "1 shaded part out of 4 total parts.",
-        hints: ["Shaded = 1.", "Total = 4.", "1/4."],
+        hints: ["Shaded = 1.", "Total = 4.", "1 shaded part out of 4 total parts."],
       },
       {
         id: "L1-tf-2",
@@ -274,7 +274,7 @@ export const T1U4L1: Lesson = {
         prompt: "$\\frac{4}{4}$ is a whole.",
         isTrue: true,
         explanation: "4 parts out of 4 equal parts is the entire whole — 1.",
-        hints: ["4 of 4 parts.", "The whole pizza.", "True."],
+        hints: ["4 of 4 parts.", "The whole pizza.", "4 parts out of 4 equal parts is the entire whole — 1."],
       },
       {
         id: "L1-order-1",
@@ -288,7 +288,7 @@ export const T1U4L1: Lesson = {
           "Check the bottom names the whole@0": "Checking is the last step.",
         },
         explanation: "Denominator = total parts (8), numerator = parts taken (3).",
-        hints: ["The whole first.", "Then what you took.", "3/8."],
+        hints: ["The whole first.", "Then what you took.", "Denominator = total parts (8), numerator = parts taken (3)."],
       },
       {
         id: "L1-drag-1",
@@ -312,11 +312,11 @@ export const T1U4L1: Lesson = {
         type: "graph-interact",
         category: "word",
         prompt: "Adjust the slider (key: value) so the shaded fraction equals 3/8 as a decimal.",
-        challenge: "Set the slider to 0.375.",
+        challenge: "Adjust the slider  so the shaded fraction equals 3/8 as a decimal. — adjust the values below to match the condition.",
         validate: { value: 0.375 },
         tolerance: 0.02,
         explanation: "3 ÷ 8 = 0.375.",
-        hints: ["3/8 as a decimal.", "3 ÷ 8.", "0.375."],
+        hints: ["3/8 as a decimal.", "3 ÷ 8.", "3 ÷ 8 = 0.375."],
       },
     ],
     selection: { procedural: 2, conceptual: 2, word: 1 },

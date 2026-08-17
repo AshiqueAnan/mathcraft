@@ -61,7 +61,7 @@ export const T1U4L6: Lesson = {
         hints: [
           "Flip the second fraction ($\\frac{1}{4}$ becomes $\\frac{4}{1}$).",
           "Now multiply: $\\frac{1}{2} \\times \\frac{4}{1}$.",
-          "4/2 = 2.",
+          "$\\frac{1}{2} \\div \\frac{1}{4} = \\frac{1}{2} \\times \\frac{4}{1} = \\frac{4}{2} = 2$.",
         ],
       },
       {
@@ -85,7 +85,7 @@ export const T1U4L6: Lesson = {
         hints: [
           "What does division of fractions ask?",
           "How many $\\frac{1}{4}$ bars fit along a $\\frac{1}{2}$ bar?",
-          "Exactly 2 fit.",
+          "Division asks 'how many of the second fit into the first?",
         ],
       },
       {
@@ -240,7 +240,7 @@ export const T1U4L6: Lesson = {
         category: "procedural",
         prompt: "Type the answer to $\\frac{1}{3} \\div \\frac{1}{9}$.", answer: 3, tolerance: 0,
         explanation: "$\\frac{1}{3} \\times \\frac{9}{1} = \\frac{9}{3} = 3$ — three ninths fit in a third.",
-        hints: ["Flip the ninth.", "1/3 × 9/1.", "9/3 = 3."],
+        hints: ["Flip the ninth.", "1/3 × 9/1.", "$\\frac{1}{3} \\times \\frac{9}{1} = \\frac{9}{3} = 3$ — three ninths fit in a third."],
       },
       {
         id: "L6-num-3",
@@ -248,7 +248,7 @@ export const T1U4L6: Lesson = {
         category: "conceptual",
         prompt: "How many $\\frac{1}{5}$-pieces fit into $\\frac{4}{5}$?", answer: 4, tolerance: 0,
         explanation: "$\\frac{4}{5} \\div \\frac{1}{5} = \\frac{4}{5} \\times \\frac{5}{1} = \\frac{20}{5} = 4$.",
-        hints: ["Same denominator.", "4 fifths ÷ 1 fifth.", "4."],
+        hints: ["Same denominator.", "4 fifths ÷ 1 fifth.", "$\\frac{4}{5} \\div \\frac{1}{5} = \\frac{4}{5} \\times \\frac{5}{1} = \\frac{20}{5} = 4$."],
       },
       {
         id: "L6-tf-1",
@@ -257,7 +257,7 @@ export const T1U4L6: Lesson = {
         prompt: "$\\frac{2}{3} \\div \\frac{2}{3} = 1$",
         isTrue: true,
         explanation: "Anything divided by itself equals 1. $\\frac{2}{3} \\times \\frac{3}{2} = \\frac{6}{6} = 1$.",
-        hints: ["Dividing by a number cancels it.", "Anything ÷ itself = 1.", "True."],
+        hints: ["Dividing by a number cancels it.", "Anything ÷ itself = 1.", "Anything divided by itself equals 1."],
       },
       {
         id: "L6-tf-2",
@@ -266,7 +266,7 @@ export const T1U4L6: Lesson = {
         prompt: "$\\frac{1}{4} \\div 2 = \\frac{1}{8}$",
         isTrue: true,
         explanation: "$\\frac{1}{4} \\div \\frac{2}{1} = \\frac{1}{4} \\times \\frac{1}{2} = \\frac{1}{8}$ — splitting a quarter in half.",
-        hints: ["Write 2 as 2/1.", "Flip it: 1/2.", "1/8 — true."],
+        hints: ["Write 2 as 2/1.", "Flip it: 1/2.", "$\\frac{1}{4} \\div \\frac{2}{1} = \\frac{1}{4} \\times \\frac{1}{2} = \\frac{1}{8}$ — splitting a quarter in half."],
       },
       {
         id: "L6-order-1",
@@ -280,7 +280,7 @@ export const T1U4L6: Lesson = {
           "Get 21/10@0": "21/10 is the final result.",
         },
         explanation: "Flip the second fraction, then multiply straight across.",
-        hints: ["Dividend.", "Flip divisor.", "Multiply."],
+        hints: ["Dividend.", "Flip divisor.", "Flip the second fraction, then multiply straight across."],
       },
       {
         id: "L6-drag-1",
@@ -298,14 +298,14 @@ export const T1U4L6: Lesson = {
           "$\\frac{3}{4} \\div \\frac{1}{8}$->2": "3/4 × 8 = 6, not 2.",
         },
         explanation: "Each flips the divisor and multiplies: 2, 2, 6.",
-        hints: ["1/2 × 4.", "2/3 × 3.", "3/4 × 8."],
+        hints: ["1/2 × 4.", "2/3 × 3.", "Each flips the divisor and multiplies: 2, 2, 6."],
       },
       {
         id: "L6-graph-1",
         type: "graph-interact",
         category: "word",
         prompt: "Slider (key: value): set it to the decimal value of $\\frac{1}{2} \\div \\frac{1}{4}$.",
-        challenge: "Set the slider to 2.",
+        challenge: "Adjust the values below so they match the condition described in the prompt.",
         validate: { value: 2 },
         tolerance: 0.01,
         explanation: "1/2 ÷ 1/4 = 2.",
