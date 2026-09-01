@@ -115,6 +115,12 @@ export interface IntuitionBlock {
   narrative: string;
   /** A prediction prompt before interacting — "Mistakes are data". */
   prediction?: string;
+  /**
+   * Optional per-lesson configuration for the widget. Must be JSON-serializable
+   * (no functions or class instances). Each widget declares its own expected
+   * keys and falls back to sensible defaults when this is omitted.
+   */
+  props?: Record<string, unknown>;
 }
 
 export interface FormalBlock {

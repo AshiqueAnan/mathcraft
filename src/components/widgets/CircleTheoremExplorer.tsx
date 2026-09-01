@@ -35,8 +35,12 @@ export function CircleTheoremExplorer() {
         {([ [A, setPa0], [B, setPb0], [C, setPc0] ] as const).map(([p, setter], i) => (
           <circle key={i} cx={p.x} cy={p.y} r={10} fill="var(--primary)" stroke="var(--bg)" strokeWidth="2"
             onPointerDown={(e) => {
+              // Capture the SVG element NOW: React nulls currentTarget after this
+              // handler returns, so reading it inside the move handler throws and kills the drag.
+              const svgEl = (e.currentTarget as unknown as SVGElement).ownerSVGElement;
+              if (!svgEl) return;
               const hand = (ev: PointerEvent) => {
-                const rect = (e.currentTarget as unknown as SVGElement).ownerSVGElement!.getBoundingClientRect();
+                const rect = svgEl.getBoundingClientRect();
                 setter(Math.atan2(((ev.clientY - rect.top) / rect.height) * 300 - cy, ((ev.clientX - rect.left) / rect.width) * 300 - cx));
               };
               const up = () => { window.removeEventListener("pointermove", hand); window.removeEventListener("pointerup", up); };

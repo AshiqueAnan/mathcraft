@@ -24,12 +24,15 @@ export function LessonClient({ lesson }: { lesson: Lesson }) {
   // A learner routed here from a failed quiz on a later lesson gets a friendly
   // "welcome back". Capture it in local state BEFORE clearing the store pointer
   // (otherwise the banner would flash for a single render then vanish).
+  // Only the DESTINATION lesson may consume the pointer: the source page is
+  // still mounted during the client-side navigation and would otherwise clear
+  // the value before the destination ever reads it.
   useEffect(() => {
-    if (remediationFrom !== null) {
+    if (remediationFrom !== null && remediationFrom !== lesson.id) {
       setShowWelcomeBack(true);
       clearRemediation();
     }
-  }, [remediationFrom, clearRemediation]);
+  }, [remediationFrom, clearRemediation, lesson.id]);
   const isRemediationTarget = showWelcomeBack && mounted;
 
   // Gate the lesson client-side (SSR/static HTML stays intact for SEO; the
@@ -125,7 +128,7 @@ export function LessonClient({ lesson }: { lesson: Lesson }) {
             <p className="body">
               <RichText text={block.narrative} />
             </p>
-            <WidgetRenderer widget={block.widget} />
+            <WidgetRenderer widget={block.widget} props={block.props} />
           </div>
         ))}
       </section>

@@ -29,10 +29,16 @@ const LOADERS = {
   "tree-diagram-builder": TreeDiagramBuilder,
   "animated-proof": AnimatedProof,
   "ratio-bar": RatioBar,
-} satisfies Record<WidgetType, React.ComponentType>;
+} satisfies Record<WidgetType, React.ComponentType<Record<string, unknown>>>;
 
 /** Map a lesson's widget type to its lazy-loaded interactive component. */
-export function WidgetRenderer({ widget }: { widget: WidgetType }) {
+export function WidgetRenderer({
+  widget,
+  props,
+}: {
+  widget: WidgetType;
+  props?: Record<string, unknown>;
+}) {
   const Widget = LOADERS[widget];
   if (!Widget) {
     return (
@@ -41,5 +47,5 @@ export function WidgetRenderer({ widget }: { widget: WidgetType }) {
       </div>
     );
   }
-  return <Widget />;
+  return <Widget {...(props ?? {})} />;
 }

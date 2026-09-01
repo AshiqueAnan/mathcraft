@@ -14,6 +14,10 @@
   --text: #e7ecf3;
   --text-muted: #93a1b4;
   --border: #223044;
+  /* Aliases used by SVG widgets drawn with fill="var(--fg)"/"var(--muted)" —
+     kept in sync with --text/--text-muted. Without these, SVG fill falls back to black. */
+  --fg: var(--text);
+  --muted: var(--text-muted);
 }
 
 html.light {
@@ -23,6 +27,8 @@ html.light {
   --text: #0b0f14;
   --text-muted: #5a6b80;
   --border: #d7dee8;
+  --fg: var(--text);
+  --muted: var(--text-muted);
 }
 
 @layer base {
