@@ -12,7 +12,7 @@ export const T1U7L4: Lesson = {
     type: "puzzle",
   },
   intuitionBlocks: [
-    { widget: "graph-plotter", narrative: "Plot y = x². Where it crosses y = 2, x = √2 ≈ 1.414 = 2^(1/2)." },
+    { widget: "graph-plotter", props: { mode: "quadratic" }, narrative: "Plot y = x². Where it crosses y = 2, x = √2 ≈ 1.414 = 2^(1/2)." },
   ],
   formalBlocks: [
     { definition: "A fractional index is a root: $a^{1/2} = \\sqrt{a}$, $a^{1/3} = \\sqrt[3]{a}$. Proof: $2^{1/2} \\times 2^{1/2} = 2^1 = 2$.", examples: ["$9^{1/2} = 3$ because 3×3=9.", "$8^{1/3} = 2$ because 2×2×2=8."], pitfall: "√4 = 2, not ±2, by convention. And √2 ≈ 1.414, not 1.", altExplanations: ["GAME: a half-of-a-power is the move-table unlock — $9^{1/2}$ is the number that used twice gets 9, so it's the root 3. Half a doubling is the square root step, the inverse of a full doubling.", "FOOD: half the recipe's cake height means the cube-root of the volume; $a^{1/2}$ is the size that squared makes a. Fractional indices are roots in disguise: cut the multiplication in half."] },

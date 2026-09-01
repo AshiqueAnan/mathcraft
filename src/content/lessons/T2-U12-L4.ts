@@ -12,7 +12,7 @@ export const T2U12L4: Lesson = {
     question: "You expanded (x + 2)(x + 3) into x² + 5x + 6. Now reverse it: given x² + 5x + 6, find the two brackets. The 5 and 6 hold a clue — 2 and 3 add to 5 AND multiply to 6. Find the pair, and the brackets write themselves.",
     type: "puzzle",
   },
-  intuitionBlocks: [{ widget: "tree-diagram-builder", narrative: "Think of the constant 6 as a tree of factor pairs: 1×6, 2×3. Which pair ADDS to the x-coefficient 5? 2 + 3 = 5. So x² + 5x + 6 = (x + 2)(x + 3). The tree makes the pair-hunt visual: split the constant, check the sum." }],
+  intuitionBlocks: [{ widget: "tree-diagram-builder", props: { variant: "factor", target: 6, sumTarget: 5 }, narrative: "Think of the constant 6 as a tree of factor pairs: 1×6, 2×3. Which pair ADDS to the x-coefficient 5? 2 + 3 = 5. So x² + 5x + 6 = (x + 2)(x + 3). The tree makes the pair-hunt visual: split the constant, check the sum." }],
 
   // @discovery
   formalBlocks: [

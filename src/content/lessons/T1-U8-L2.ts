@@ -12,7 +12,7 @@ export const T1U8L2: Lesson = {
     question: "A carpenter needs a length of exactly √12 m, but every ruler is marked in whole numbers. A colleague hands her √12 as 2√3 and says 'same length, tidier.' How can two different-looking surds be the very same number?",
     type: "paradox",
   },
-  intuitionBlocks: [{ widget: "tree-diagram-builder", narrative: "Split 12 into its prime fingerprint: 12 = 2 × 2 × 3. Watch the 2 × 2 pair up into a square — 4. The square root of a square is whole: √4 = 2, and it walks out of the root as a 2, leaving 2√3 behind." }],
+  intuitionBlocks: [{ widget: "tree-diagram-builder", props: { variant: "factor", target: 12, squarePair: true }, narrative: "Split 12 into its prime fingerprint: 12 = 2 × 2 × 3. Watch the 2 × 2 pair up into a square — 4. The square root of a square is whole: √4 = 2, and it walks out of the root as a 2, leaving 2√3 behind." }],
 
   // @discovery
   formalBlocks: [

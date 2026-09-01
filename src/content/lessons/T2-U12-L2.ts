@@ -12,7 +12,7 @@ export const T2U12L2: Lesson = {
     question: "Last lesson you expanded one bracket: 3(x + 4). But what about (x + 2)(x + 3)? Two brackets means two dimensions — the area splits into FOUR rectangles, and adding them reveals a clean rule that writes itself.",
     type: "puzzle",
   },
-  intuitionBlocks: [{ widget: "geometry-playground", narrative: "Build a rectangle that is (x + 2) tall and (x + 3) wide. Split it into four smaller rectangles: x·x, x·3, 2·x, 2·3. Add them: x² + 3x + 2x + 6 = x² + 5x + 6. Each term in the first bracket multiplies each term in the second — the area model makes the 'FOIL' order obvious." }],
+  intuitionBlocks: [{ widget: "animated-proof", props: { proof: "expansion", a: 2, b: 3 }, narrative: "Build a rectangle that is (x + 2) tall and (x + 3) wide. Split it into four smaller rectangles: x·x, x·3, 2·x, 2·3. Add them: x² + 3x + 2x + 6 = x² + 5x + 6. Each term in the first bracket multiplies each term in the second — the area model makes the 'FOIL' order obvious." }],
 
   // @discovery
   formalBlocks: [

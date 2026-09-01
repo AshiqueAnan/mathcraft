@@ -14,6 +14,7 @@ export const T1U2L2: Lesson = {
   intuitionBlocks: [
     {
       widget: "number-line",
+      props: { mode: "hops", start: 3, ops: ["+4", "×2"] },
       narrative: "Watch the point jump for each expression. Without brackets, the × block lands first at 8, then +3 takes you to 11. With brackets, 3+4 jumps to 7 first, then ×2 doubles it to 14.",
     },
   ],

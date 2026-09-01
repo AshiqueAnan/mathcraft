@@ -12,7 +12,7 @@ export const T1U10L3: Lesson = {
     question: "A survey of 20 students: 12 like tea, 8 like coffee, 5 like both. How many like NO hot drink? Most people add 12 + 8, subtract 5, then forget the '20 students' part — the last region of the Venn (the outside) hides the answer.",
     type: "puzzle",
   },
-  intuitionBlocks: [{ widget: "fraction-bars", narrative: "Think of the whole bar as the 20 students. Split it into four regions: tea only, coffee only, both, and neither. Each region is a slice of the same total — once every student is placed in exactly one slice, the bar always sums to 20. Fill the known slices first, then the outside slice is whatever is left over." }],
+  intuitionBlocks: [{ widget: "fraction-bars", props: { mode: "regions", total: 20, regions: [{ label: "Tea only", count: 7 }, { label: "Coffee only", count: 3 }, { label: "Both", count: 5 }, { label: "Neither", count: 5, leftover: true }] }, narrative: "Think of the whole bar as the 20 students. Split it into four regions: tea only, coffee only, both, and neither. Each region is a slice of the same total — once every student is placed in exactly one slice, the bar always sums to 20. Fill the known slices first, then the outside slice is whatever is left over." }],
 
   // @discovery
   formalBlocks: [

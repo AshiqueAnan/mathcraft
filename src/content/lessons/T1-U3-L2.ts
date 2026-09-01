@@ -14,6 +14,7 @@ export const T1U3L2: Lesson = {
   intuitionBlocks: [
     {
       widget: "tree-diagram-builder",
+      props: { variant: "factor", target: 60 },
       narrative: "Tap to build a factor tree for 60. Try splitting 60 = 6 × 10, then split each again. Keep going until every branch ends in a prime — you'll always collect 2, 2, 3, 5.",
     },
   ],

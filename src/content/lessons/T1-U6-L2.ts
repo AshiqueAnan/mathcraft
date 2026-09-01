@@ -14,6 +14,7 @@ export const T1U6L2: Lesson = {
   intuitionBlocks: [
     {
       widget: "ratio-bar",
+      props: { mode: "ratio", a: 3, b: 5, labelA: "Aya", labelB: "Ben" },
       narrative: "The RatioBar splits the whole into 3:5. Slide it and watch: total parts = 3 + 5 = 8. One part = total ÷ 8. Aya's share = 3 parts, Ben's = 5. Each part is the same size — the ratio tells you HOW MANY parts each person gets.",
     },
   ],

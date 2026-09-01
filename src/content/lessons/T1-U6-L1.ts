@@ -14,6 +14,7 @@ export const T1U6L1: Lesson = {
   intuitionBlocks: [
     {
       widget: "ratio-bar",
+      props: { mode: "ratio", a: 2, b: 1, labelA: "Flour", labelB: "Milk" },
       narrative: "The RatioBar shows the flour:milk split. Slide to 2:1, then 4:2, then 1:0.5. The bar's shaded fraction stays the same — the ratio 2:1 is one relationship wearing different scale costumes.",
     },
   ],

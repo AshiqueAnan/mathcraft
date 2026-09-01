@@ -12,7 +12,7 @@ export const T1U9L1: Lesson = {
     question: "The Milky Way is about 1,000,000,000,000,000,000,000 km wide — a 1 with 21 zeros. A hydrogen atom is 0.0000000001 m wide — a 1 ten places after the point. Both fit in one line if we count the zero-steps in shorthand. How?",
     type: "paradox",
   },
-  intuitionBlocks: [{ widget: "number-line", narrative: "Zoom the number line out by ten each time: 1, 10, 100, 1000… Each zoom is one more ×10 step, so the exponent counts the zooms. The same trick counts tiny numbers by zooming IN — the exponent goes negative. Standard form is just 'first digit × 10 to the count of zooms'." }],
+  intuitionBlocks: [{ widget: "number-line", props: { mode: "markers", min: 0, max: 1000, powerBase: 10, markers: [{ value: 1, label: "1" }, { value: 10, label: "10" }, { value: 100, label: "100" }, { value: 1000, label: "1000" }] }, narrative: "Zoom the number line out by ten each time: 1, 10, 100, 1000… Each zoom is one more ×10 step, so the exponent counts the zooms. The same trick counts tiny numbers by zooming IN — the exponent goes negative. Standard form is just 'first digit × 10 to the count of zooms'." }],
 
   // @discovery
   formalBlocks: [

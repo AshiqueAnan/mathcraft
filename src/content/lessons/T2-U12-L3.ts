@@ -12,7 +12,7 @@ export const T2U12L3: Lesson = {
     question: "You expanded 3(x + 4) into 3x + 12. Now run it backwards: can you spot the shared factor hiding in 3x + 12 and fold it back into a bracket? This reverse move — factorization — is the algebra superpower that solves equations later.",
     type: "puzzle",
   },
-  intuitionBlocks: [{ widget: "ratio-bar", narrative: "Shade 3x + 12 as one expression. The bar shows both terms share a factor of 3: 3x = 3·x and 12 = 3·4. Pull the shared 3 out front and the expression folds back into 3(x + 4) — expansion run in reverse." }],
+  intuitionBlocks: [{ widget: "ratio-bar", props: { mode: "factorout", a: 3, b: 12, factor: 3 }, narrative: "Shade 3x + 12 as one expression. The bar shows both terms share a factor of 3: 3x = 3·x and 12 = 3·4. Pull the shared 3 out front and the expression folds back into 3(x + 4) — expansion run in reverse." }],
 
   // @discovery
   formalBlocks: [

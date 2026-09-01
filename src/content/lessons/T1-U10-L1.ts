@@ -12,7 +12,7 @@ export const T1U10L1: Lesson = {
     question: "A librarian sorts every book by genre, then every genre by author. A pet shop sorts animals into 'mammals' and 'can fly'. Where does a bat go? And why does 'belongs to' (∈) turn an ordinary pile into a mathematical tool?",
     type: "real-world",
   },
-  intuitionBlocks: [{ widget: "venn-diagram", narrative: "Drop the objects into the circles. A bat is a mammal AND it can fly, so it lands in the overlap of the two sets — one object, two memberships. The Venn diagram is a storage bag for 'belongs to': each circle is a set, and every object inside it satisfies that set's test." }],
+  intuitionBlocks: [{ widget: "venn-diagram", props: { mode: "items", aLabel: "Mammals", bLabel: "Can fly", items: [{ label: "bat", zone: "both" }, { label: "dog", zone: "A" }, { label: "whale", zone: "A" }, { label: "eagle", zone: "B" }, { label: "bee", zone: "B" }, { label: "trout", zone: "out" }] }, narrative: "Drop the objects into the circles. A bat is a mammal AND it can fly, so it lands in the overlap of the two sets — one object, two memberships. The Venn diagram is a storage bag for 'belongs to': each circle is a set, and every object inside it satisfies that set's test." }],
 
   // @discovery
   formalBlocks: [
